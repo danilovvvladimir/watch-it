@@ -4,5 +4,5 @@ export class RefreshTokenDTO {
   @IsString({
     message: "You didn't pass refresh token or it is not a string!",
   })
-  refresh: string;
+  refreshToken: string;
 }

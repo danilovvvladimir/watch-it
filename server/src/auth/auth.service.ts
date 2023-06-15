@@ -9,6 +9,7 @@ import { User } from "src/user/user.schema";
 import { AuthDTO } from "./dto/auth.dto";
 import { compare, genSalt, hash } from "bcryptjs";
 import { JwtService } from "@nestjs/jwt";
+import { RefreshTokenDTO } from "./dto/refreshToken.dto";
 
 @Injectable()
 export class AuthService {
@@ -66,6 +67,16 @@ export class AuthService {
     return user;
   }
 
+  returnUserWithoutPassword(user: User) {
+    // const { password, ...userWithoutPassword } = user;
+
+    return {
+      _id: user._id,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    };
+  }
+
   async issueTokenPair(userId: string) {
     const data = { _id: userId };
 
@@ -78,5 +89,26 @@ export class AuthService {
     });
 
     return { refreshToken, accessToken };
+  }
+
+  async getNewTokens({ refreshToken }: RefreshTokenDTO) {
+    if (!refreshToken) {
+      throw new UnauthorizedException("Please sign in!");
+    }
+
+    const result = await this.jwtService.verifyAsync(refreshToken);
+
+    if (!result) {
+      throw new UnauthorizedException("Invalid toke or expired!");
+    }
+
+    const user = await this.userModel.findById(result._id);
+
+    const tokens = await this.issueTokenPair(String(user._id));
+
+    return {
+      user: this.returnUserWithoutPassword(user),
+      ...tokens,
+    };
   }
 }
