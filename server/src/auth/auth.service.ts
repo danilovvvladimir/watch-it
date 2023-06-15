@@ -8,10 +8,14 @@ import { Model } from "mongoose";
 import { User } from "src/user/user.schema";
 import { AuthDTO } from "./dto/auth.dto";
 import { compare, genSalt, hash } from "bcryptjs";
+import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<User>,
+    private readonly jwtService: JwtService,
+  ) {}
 
   async register(dto: AuthDTO) {
     const { email, password } = dto;
@@ -33,11 +37,17 @@ export class AuthService {
       password: passwordHash,
     });
 
-    return newUser.save();
+    const user = await newUser.save();
+    const tokens = await this.issueTokenPair(String(user._id));
+
+    return { user, ...tokens };
   }
 
   async login(dto: AuthDTO) {
-    return this.validateUser(dto);
+    const user = await this.validateUser(dto);
+    const tokens = await this.issueTokenPair(String(user._id));
+
+    return { user, ...tokens };
   }
 
   async validateUser(dto: AuthDTO): Promise<User> {
@@ -53,7 +63,20 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException("Invalid Password");
     }
-
     return user;
+  }
+
+  async issueTokenPair(userId: string) {
+    const data = { _id: userId };
+
+    const refreshToken = await this.jwtService.signAsync(data, {
+      expiresIn: "15d",
+    });
+
+    const accessToken = await this.jwtService.signAsync(data, {
+      expiresIn: "1h",
+    });
+
+    return { refreshToken, accessToken };
   }
 }
