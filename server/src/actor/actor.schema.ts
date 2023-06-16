@@ -1,13 +1,13 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument, Types } from "mongoose";
 
-export type GenreDocument = HydratedDocument<Genre>;
+export type ActorDocument = HydratedDocument<Actor>;
 
 @Schema({
   _id: true,
   timestamps: true,
 })
-export class Genre {
+export class Actor {
   _id: Types.ObjectId;
 
   @Prop()
@@ -17,10 +17,7 @@ export class Genre {
   slug: string;
 
   @Prop()
-  description: string;
-
-  @Prop()
-  icon: string;
+  photo: string;
 }
 
-export const GenreSchema = SchemaFactory.createForClass(Genre);
+export const ActorSchema = SchemaFactory.createForClass(Actor);

@@ -4,25 +4,30 @@ import { User } from "./user.schema";
 import { Model } from "mongoose";
 import { UpdateUserDTO } from "./dto/update-user.dto";
 import { genSalt, hash } from "bcryptjs";
+import {
+  USER_EMAIL_TAKEN_MESSAGE,
+  USER_NOT_FOUND_MESSAGE,
+  USER_UPDATED_MESSAGE,
+} from "./constants/user.constants";
 
 @Injectable()
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async byId(_id: string) {
+  async findById(_id: string) {
     const user = await this.userModel.findById(_id);
     if (!user) {
-      throw new NotFoundException("User not found!");
+      throw new NotFoundException(USER_NOT_FOUND_MESSAGE);
     }
     return user;
   }
 
   async updateUser(_id: string, dto: UpdateUserDTO) {
-    const user = await this.byId(_id);
+    const user = await this.findById(_id);
     const isSameUser = await this.userModel.findOne({ email: dto.email });
 
     if (isSameUser && String(_id) !== String(isSameUser._id)) {
-      throw new NotFoundException("Email is already taken");
+      throw new NotFoundException(USER_EMAIL_TAKEN_MESSAGE);
     }
 
     if (dto.password) {
@@ -38,7 +43,7 @@ export class UserService {
 
     await user.save();
 
-    return { message: "UserProfile has been succussfully updated" };
+    return { message: USER_UPDATED_MESSAGE };
   }
 
   async getAllUsersCount() {

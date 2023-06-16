@@ -3,6 +3,7 @@ import { Genre } from "./genre.schema";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { UpdateGenreDTO } from "./dto/update-genre.dto";
+import { GENRE_NOT_FOUND_MESSAGE } from "./constants/genre.constants";
 
 @Injectable()
 export class GenreService {
@@ -11,7 +12,7 @@ export class GenreService {
   async findById(_id: string) {
     const genre = await this.genreModel.findById(_id);
     if (!genre) {
-      throw new NotFoundException("Genre not found!");
+      throw new NotFoundException(GENRE_NOT_FOUND_MESSAGE);
     }
     return genre;
   }
@@ -19,7 +20,7 @@ export class GenreService {
   async findBySlug(slug: string) {
     const genre = await this.genreModel.findOne({ slug });
     if (!genre) {
-      throw new NotFoundException("Genre not found!");
+      throw new NotFoundException(GENRE_NOT_FOUND_MESSAGE);
     }
     return genre;
   }
@@ -68,7 +69,7 @@ export class GenreService {
       .exec();
 
     if (!doc) {
-      throw new NotFoundException("Genre not found");
+      throw new NotFoundException(GENRE_NOT_FOUND_MESSAGE);
     }
 
     return doc;
@@ -78,7 +79,7 @@ export class GenreService {
     const doc = await this.genreModel.findByIdAndDelete(id).exec();
 
     if (!doc) {
-      throw new NotFoundException("Genre not found");
+      throw new NotFoundException(GENRE_NOT_FOUND_MESSAGE);
     }
 
     return doc;

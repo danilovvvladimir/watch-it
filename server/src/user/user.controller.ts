@@ -25,7 +25,7 @@ export class UserController {
   @Get("profile")
   @Auth()
   async getProfile(@UserD("_id") _id: string) {
-    return this.userService.byId(_id);
+    return this.userService.findById(_id);
   }
 
   @Get()
@@ -43,7 +43,7 @@ export class UserController {
   @Get(":id")
   @Auth("admin")
   async getUserProfile(@Param("id", IdValidationPipe) id: string) {
-    return this.userService.byId(id);
+    return this.userService.findById(id);
   }
 
   // ==> Put <==
