@@ -63,10 +63,24 @@ export class GenreService {
   }
 
   async updateGenre(id: string, dto: UpdateGenreDTO) {
-    return this.genreModel.findByIdAndUpdate(id, dto, { new: true }).exec();
+    const doc = await this.genreModel
+      .findByIdAndUpdate(id, dto, { new: true })
+      .exec();
+
+    if (!doc) {
+      throw new NotFoundException("Genre not found");
+    }
+
+    return doc;
   }
 
   async deleteGenre(id: string) {
-    return this.genreModel.findByIdAndDelete(id).exec();
+    const doc = await this.genreModel.findByIdAndDelete(id).exec();
+
+    if (!doc) {
+      throw new NotFoundException("Genre not found");
+    }
+
+    return doc;
   }
 }
