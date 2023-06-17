@@ -15,13 +15,18 @@ import { Auth } from "src/auth/decorators/auth.decorator";
 import { IdValidationPipe } from "src/pipes/id.validation.pipe";
 import { UpdateGenreDTO } from "./dto/update-genre.dto";
 
-@Controller("genre")
+@Controller("genres")
 export class GenreController {
   constructor(private readonly genreService: GenreService) {}
 
   @Get("by-slug/:slug")
   async bySlug(@Param("slug") slug: string) {
     return this.genreService.findBySlug(slug);
+  }
+
+  @Get("collections")
+  async getCollections() {
+    return this.genreService.getCollections();
   }
 
   @Get()

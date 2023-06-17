@@ -4,10 +4,15 @@ import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { UpdateGenreDTO } from "./dto/update-genre.dto";
 import { GENRE_NOT_FOUND_MESSAGE } from "./constants/genre.constants";
+import { MovieService } from "src/movie/movie.service";
+import { ICollection } from "./genre.interface";
 
 @Injectable()
 export class GenreService {
-  constructor(@InjectModel(Genre.name) private genreModel: Model<Genre>) {}
+  constructor(
+    @InjectModel(Genre.name) private genreModel: Model<Genre>,
+    private readonly movieService: MovieService,
+  ) {}
 
   async findById(_id: string) {
     const genre = await this.genreModel.findById(_id);
@@ -83,5 +88,25 @@ export class GenreService {
     }
 
     return doc;
+  }
+
+  async getCollections() {
+    const genres = await this.getAllGenres();
+    const collections = await Promise.all(
+      genres.map(async (genre) => {
+        const moviesByGenre = await this.movieService.findByGenres([genre._id]);
+
+        const result: ICollection = {
+          _id: String(genre._id),
+          image: moviesByGenre[0].bigPoster,
+          slug: genre.slug,
+          name: genre.name,
+        };
+
+        return result;
+      }),
+    );
+
+    return collections;
   }
 }

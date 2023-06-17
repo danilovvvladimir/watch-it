@@ -33,8 +33,6 @@ export class MovieService {
   }
 
   async findByGenres(genreIds: Types.ObjectId[]) {
-    console.log(genreIds);
-
     return this.movieModel.find({ genres: { $in: genreIds } }).exec();
   }
 
