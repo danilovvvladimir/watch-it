@@ -113,4 +113,18 @@ export class MovieService {
       .populate("genres")
       .exec();
   }
+
+  async updateRating(id: Types.ObjectId, newRating: number) {
+    return this.movieModel
+      .findByIdAndUpdate(
+        id,
+        {
+          rating: newRating,
+        },
+        // {
+        //   new: true,
+        // },
+      )
+      .exec();
+  }
 }

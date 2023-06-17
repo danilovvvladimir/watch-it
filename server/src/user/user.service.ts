@@ -77,8 +77,6 @@ export class UserService {
   }
 
   async toggleFavorite(movieId: string, user: User) {
-    console.log("toggle");
-
     const { favoriteMovies, _id } = user;
 
     await this.userModel.findByIdAndUpdate(_id, {
