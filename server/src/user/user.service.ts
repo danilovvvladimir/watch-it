@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { User } from "./user.schema";
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
 import { UpdateUserDTO } from "./dto/update-user.dto";
 import { genSalt, hash } from "bcryptjs";
 import {
@@ -74,5 +74,32 @@ export class UserService {
 
   async deleteUser(id: string) {
     return this.userModel.findByIdAndDelete(id).exec();
+  }
+
+  async toggleFavorite(movieId: string, user: User) {
+    console.log("toggle");
+
+    const { favoriteMovies, _id } = user;
+
+    await this.userModel.findByIdAndUpdate(_id, {
+      favoriteMovies: favoriteMovies.includes(new Types.ObjectId(movieId))
+        ? favoriteMovies.filter((id) => String(id) !== String(movieId))
+        : [...favoriteMovies, movieId],
+    });
+  }
+
+  async getFavoriteMovies(_id: string) {
+    return this.userModel
+      .findById(_id, "favoriteMovies")
+      .populate({
+        path: "favoriteMovies",
+        populate: {
+          path: "genres",
+        },
+      })
+      .exec()
+      .then((data) => {
+        return data.favoriteMovies;
+      });
   }
 }

@@ -5,6 +5,7 @@ import {
   Get,
   HttpCode,
   Param,
+  Post,
   Put,
   Query,
   UsePipes,
@@ -15,6 +16,7 @@ import { Auth } from "src/auth/decorators/auth.decorator";
 import { UserD } from "./decorators/user.decorator";
 import { UpdateUserDTO } from "./dto/update-user.dto";
 import { IdValidationPipe } from "src/pipes/id.validation.pipe";
+import { User } from "./user.schema";
 
 @Controller("users")
 export class UserController {
@@ -72,5 +74,22 @@ export class UserController {
   @Auth("admin")
   async deleteUserProfile(@Param("id", IdValidationPipe) id: string) {
     return this.userService.deleteUser(id);
+  }
+
+  @Get("profile/favorites")
+  @Auth()
+  async getFavorites(@UserD("_id") _id: string) {
+    return this.userService.getFavoriteMovies(_id);
+  }
+
+  @UsePipes(new ValidationPipe())
+  @Put("profile/favorites")
+  @HttpCode(200)
+  @Auth()
+  async toggleFavorite(
+    @Body("movieId", IdValidationPipe) movieId: string,
+    @UserD() user: User,
+  ) {
+    return this.userService.toggleFavorite(movieId, user);
   }
 }
