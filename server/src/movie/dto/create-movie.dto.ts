@@ -15,6 +15,9 @@ class MovieParameters {
 
   @IsString()
   country: string;
+
+  @IsNumber()
+  ageLimit: number;
 }
 
 export class CreateMovieDTO {
@@ -46,10 +49,4 @@ export class CreateMovieDTO {
   @IsArray()
   @IsString({ each: true })
   actors: string[];
-
-  @IsNumber()
-  rating?: number;
-
-  @IsBoolean()
-  isSendTelegram?: boolean;
 }

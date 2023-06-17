@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument, Types } from "mongoose";
+import { HydratedDocument, Types, Schema as MongooseSchema } from "mongoose";
 
 export type MovieDocument = HydratedDocument<Movie>;
 
@@ -12,6 +12,9 @@ export class MovieParameters {
 
   @Prop()
   country: string;
+
+  @Prop()
+  ageLimit: number;
 }
 
 @Schema({
@@ -36,6 +39,9 @@ export class Movie {
   @Prop({ unique: true })
   videoUrl: string;
 
+  @Prop({ default: 0 })
+  countOpened?: number;
+
   @Prop()
   poster: string;
 
@@ -45,14 +51,11 @@ export class Movie {
   @Prop({ default: 4.0 })
   rating?: number;
 
-  @Prop()
-  genres: string[];
+  @Prop([{ type: MongooseSchema.Types.ObjectId, ref: "Genre" }])
+  genres: Types.ObjectId[];
 
-  @Prop()
-  actors: string[];
-
-  @Prop({ default: false })
-  isSendTelegram?: boolean;
+  @Prop([{ type: MongooseSchema.Types.ObjectId, ref: "Actor" }])
+  actors: Types.ObjectId[];
 }
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);
