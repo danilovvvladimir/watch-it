@@ -15,3 +15,11 @@ export interface IMovieSmall {
   genres: string[];
   id: string;
 }
+
+export interface ISlide {
+  bgImage: StaticImageData;
+  title: string;
+  genres: string[];
+  url: string;
+  id: string;
+}

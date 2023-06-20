@@ -1,6 +1,7 @@
 import "@/assets/styles/globals.scss";
 import Menu from "@/components/Menu/Menu";
 import { Inter } from "next/font/google";
+import "./Layout.scss";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Menu />
-        <main className="container">{children}</main>
+        <main className="main">{children}</main>
       </body>
     </html>
   );

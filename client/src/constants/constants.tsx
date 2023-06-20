@@ -1,5 +1,6 @@
 import fireheartPoster from "@/assets/posters/fireheart.jpg";
-import { IMenuListItem, IMovieSmall } from "@/types/types";
+import fireheartBg from "@/assets/slider/fireheart.jpg";
+import { IMenuListItem, IMovieSmall, ISlide } from "@/types/types";
 
 export const NavigationListItems: IMenuListItem[] = [
   {
@@ -272,5 +273,15 @@ export const PopularMoviesItems: IMovieSmall[] = [
     rating: 4.1,
     url: "/",
     id: "3",
+  },
+];
+
+export const Slides: ISlide[] = [
+  {
+    title: "Fireheart",
+    genres: ["Cartoons", "Comedy"],
+    url: "/",
+    bgImage: fireheartBg,
+    id: "1",
   },
 ];

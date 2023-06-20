@@ -23,9 +23,11 @@
     margin-bottom: 32px;
   }
   &--left {
+    border-right: 1px solid $gray-dark;
     left: 0;
   }
   &--right {
+    border-left: 1px solid $gray-dark;
     right: 0;
   }
 }
