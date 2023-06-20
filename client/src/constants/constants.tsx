@@ -1,27 +1,7 @@
-import {
-  AiFillHome,
-  AiFillQuestionCircle,
-  AiOutlinePlus,
-} from "react-icons/ai";
-import { FaCompass, FaMagic } from "react-icons/fa";
-import { GrRefresh } from "react-icons/gr";
-import { BsFire } from "react-icons/bs";
-import { BiLaugh } from "react-icons/bi";
-import { MdOutlineFamilyRestroom } from "react-icons/md";
-import { RiGhost2Fill } from "react-icons/ri";
+import fireheartPoster from "@/assets/posters/fireheart.jpg";
+import { IMenuListItem, IMovieSmall } from "@/types/types";
 
-import signinURL from "@/assets/icons/SignIn.svg";
-import signoutURL from "@/assets/icons/SignOut.svg";
-import Image from "next/image";
-
-export interface MenuListItem {
-  title: string;
-  url: string;
-  id: string;
-  icon: JSX.Element;
-}
-
-export const NavigationListItems: MenuListItem[] = [
+export const NavigationListItems: IMenuListItem[] = [
   {
     title: "Home",
     icon: (
@@ -131,7 +111,7 @@ export const NavigationListItems: MenuListItem[] = [
   },
 ];
 
-export const GenresListItems = [
+export const GenresListItems: IMenuListItem[] = [
   {
     title: "Comedy",
     icon: (
@@ -221,7 +201,7 @@ export const GenresListItems = [
   },
 ];
 
-export const GeneralListItems = [
+export const GeneralListItems: IMenuListItem[] = [
   {
     title: "Create Account",
     icon: (
@@ -265,5 +245,32 @@ export const GeneralListItems = [
     ),
     url: "/auth/login",
     id: "2",
+  },
+];
+
+export const PopularMoviesItems: IMovieSmall[] = [
+  {
+    title: "Fireheart",
+    genres: ["Cartoons", "Comedy"],
+    image: fireheartPoster,
+    rating: 4.1,
+    url: "/",
+    id: "1",
+  },
+  {
+    title: "Fireheart",
+    genres: ["Cartoons", "Comedy"],
+    image: fireheartPoster,
+    rating: 4.1,
+    url: "/",
+    id: "2",
+  },
+  {
+    title: "Fireheart",
+    genres: ["Cartoons", "Comedy"],
+    image: fireheartPoster,
+    rating: 4.1,
+    url: "/",
+    id: "3",
   },
 ];

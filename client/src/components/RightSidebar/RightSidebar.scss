@@ -1,0 +1,16 @@
+.input-wrapper {
+  position: relative;
+  display: block;
+  margin-bottom: 24px;
+  width: 100%;
+  &__icon {
+    line-height: 0;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &__input {
+    padding-left: 48px;
+  }
+}

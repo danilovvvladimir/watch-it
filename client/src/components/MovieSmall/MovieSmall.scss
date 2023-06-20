@@ -1,0 +1,37 @@
+@import "../../assets/styles/variables.scss";
+
+.movie-small {
+  &__wrapper-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  &__image {
+    width: 66px;
+    height: 96px;
+    border-radius: 10px;
+  }
+  &__title {
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+  &__genres {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  &__genres-item {
+    font-weight: 400;
+    font-size: 12px;
+    color: $gray-dark;
+  }
+  &__rating {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  margin-bottom: 20px;
+}

@@ -7,8 +7,8 @@ import { FC } from "react";
 // ==> Other imports <===
 import "./MenuList.scss";
 import MenuItem from "../MenuItem/MenuItem";
-import { MenuListItem } from "@/constants/constants";
 import { usePathname, useRouter } from "next/navigation";
+import { MenuListItem } from "@/types/types";
 
 interface MenuListProps {
   items: MenuListItem[];

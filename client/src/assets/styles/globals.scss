@@ -24,14 +24,12 @@ a {
   padding: 20px 60px;
   &-mini {
     padding: 20px 32px;
-    max-width: 236px;
+    max-width: 300px;
   }
 }
 
 .icon {
   &--gray {
-    color: $gray-dark;
-
     path {
       stroke: $gray-dark;
     }
@@ -39,6 +37,11 @@ a {
   &--filled {
     path {
       fill: $gray-dark;
+    }
+  }
+  &--gold {
+    path {
+      fill: $gold;
     }
   }
 }
