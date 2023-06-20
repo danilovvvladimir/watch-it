@@ -21,7 +21,7 @@ const MenuItem: FC<MenuItemProps> = ({ title, url, isActive, icon }) => {
     <li className="menu__list-item">
       <Link
         href={url}
-        className={isActive ? LINK_CLASSNAME : LINK_ACTIVE_CLASSNAME}
+        className={isActive ? LINK_ACTIVE_CLASSNAME : LINK_CLASSNAME}
       >
         {icon}
         {title}
