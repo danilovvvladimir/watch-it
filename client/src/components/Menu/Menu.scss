@@ -1,0 +1,26 @@
+@import "../../assets/styles/variables.scss";
+
+.menu__item {
+  margin-bottom: 32px;
+  &-title {
+    font-weight: bold;
+    color: $gray-light;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+}
+
+.sidebar {
+  background-color: $black-primary;
+  height: 100vh;
+  position: fixed;
+  &__logo {
+    margin-bottom: 32px;
+  }
+  &--left {
+    left: 0;
+  }
+  &--right {
+    right: 0;
+  }
+}
