@@ -1,6 +1,13 @@
 import fireheartPoster from "@/assets/posters/fireheart.jpg";
+import tomhollandIMG from "@/assets/actors/tom-holland.jpg";
 import fireheartBg from "@/assets/slider/fireheart.jpg";
-import { IMenuListItem, IMovieSmall, ISlide } from "@/types/types";
+import {
+  ICard,
+  ICards,
+  IMenuListItem,
+  IMovieSmall,
+  ISlide,
+} from "@/types/types";
 
 export const NavigationListItems: IMenuListItem[] = [
   {
@@ -285,3 +292,63 @@ export const Slides: ISlide[] = [
     id: "1",
   },
 ];
+
+export const CardsFilms: ICards = {
+  cards: [
+    {
+      image: fireheartPoster,
+      altImage: "fireheart",
+      hoverTitle: "Fireheart",
+      url: "/",
+      id: "1",
+    },
+    {
+      image: fireheartPoster,
+      altImage: "fireheart",
+      hoverTitle: "Fireheart",
+      url: "/",
+      id: "2",
+    },
+  ],
+  title: "Trending Now",
+};
+export const CardsActors: ICards = {
+  cards: [
+    {
+      image: tomhollandIMG,
+      altImage: "tom-holland",
+      hoverTitle: "Tom Holland",
+      hoverSubtitle: "+2 movies",
+      url: "/",
+      id: "1",
+    },
+    {
+      image: tomhollandIMG,
+      altImage: "tom-holland",
+      hoverTitle: "Tom Holland",
+      hoverSubtitle: "+2 movies",
+      url: "/",
+      id: "2",
+    },
+  ],
+  title: "Best actors",
+};
+export const CardsGenres: ICards = {
+  cards: [
+    {
+      image: fireheartPoster,
+      altImage: "horror",
+      hoverTitle: "Horror",
+      url: "/",
+      id: "1",
+    },
+    {
+      image: fireheartPoster,
+      altImage: "action",
+      hoverTitle: "Action",
+      url: "/",
+      id: "2",
+    },
+  ],
+  title: "Genres",
+};

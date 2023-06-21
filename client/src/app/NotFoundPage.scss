@@ -1,0 +1,30 @@
+.not-found {
+  padding-top: 87px;
+  height: 100vh;
+  &__wrapper {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+  }
+  &__textbox {
+    max-width: 480px;
+  }
+  &__title {
+    color: #fff;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 39px;
+    margin-bottom: 12px;
+  }
+  &__subtitle {
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 20px;
+  }
+  &__button {
+    padding: 8px 90px;
+  }
+}

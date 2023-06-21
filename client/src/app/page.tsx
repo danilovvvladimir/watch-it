@@ -5,7 +5,13 @@ import { FC } from "react";
 // ==> Other imports <===
 import "./HomePage.scss";
 import Slider from "@/components/Slider/Slider";
-import { Slides } from "@/constants/constants";
+import {
+  CardsActors,
+  CardsFilms,
+  CardsGenres,
+  Slides,
+} from "@/constants/constants";
+import CardList from "@/components/CardList/CardList";
 
 const HomePage: FC = () => {
   return (
@@ -14,8 +20,11 @@ const HomePage: FC = () => {
         <h1 className="title home-page__title">Watch movies online</h1>
         <Slider slides={Slides} />
         {/* List - films*/}
+        <CardList cards={CardsFilms} />
         {/* List - actors*/}
+        <CardList cards={CardsActors} />
         {/* List - genres*/}
+        <CardList cards={CardsGenres} />
       </div>
     </section>
   );

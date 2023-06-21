@@ -23,3 +23,17 @@ export interface ISlide {
   url: string;
   id: string;
 }
+
+export interface ICard {
+  image: StaticImageData;
+  altImage: string;
+  hoverTitle?: string;
+  hoverSubtitle?: string;
+  url: string;
+  id: string;
+}
+
+export interface ICards {
+  cards: ICard[];
+  title: string;
+}

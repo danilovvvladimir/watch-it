@@ -1,6 +1,7 @@
 @import "../assets/styles/variables.scss";
 
 .home-page {
+  height: 100vh;
   background-color: $black-primary;
   &__title {
     text-align: center;
