@@ -1,6 +1,7 @@
 @import "../../assets/styles/variables.scss";
 
 .cards {
+  margin-bottom: 48px;
   &__titlebox {
     display: flex;
     align-items: center;
@@ -18,9 +19,21 @@
   }
   &__list {
     display: flex;
+    align-items: center;
     gap: 24px;
   }
-  margin-bottom: 48px;
+  &__button {
+    padding: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: -50px;
+    z-index: 10;
+  }
 }
 
 .divider {

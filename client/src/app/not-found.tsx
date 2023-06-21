@@ -11,6 +11,12 @@ import Button from "@/components/UI/Button/Button";
 import "./NotFoundPage.scss";
 import notfoundIMG from "@/assets/images/404error.svg";
 
+export const metadata = {
+  title: "Watch IT | Not Found",
+  description:
+    "You may have used an invalid link or the page has been deleted.",
+};
+
 const NotFoundPage: FC = () => {
   return (
     <section className="not-found">

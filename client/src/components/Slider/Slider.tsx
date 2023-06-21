@@ -1,12 +1,11 @@
 // ==> Libs imports <===
 import { FC } from "react";
 // ==> Components imports <===
+import Slide from "../Slide/Slide";
 
 // ==> Other imports <===
 import "./Slider.scss";
-import { StaticImageData } from "next/image";
 import { ISlide } from "@/types/types";
-import Slide from "../Slide/Slide";
 
 interface SliderProps {
   slides: ISlide[];

@@ -309,7 +309,29 @@ export const CardsFilms: ICards = {
       url: "/",
       id: "2",
     },
+    {
+      image: fireheartPoster,
+      altImage: "fireheart",
+      hoverTitle: "Fireheart",
+      url: "/",
+      id: "3",
+    },
+    {
+      image: fireheartPoster,
+      altImage: "fireheart",
+      hoverTitle: "Fireheart",
+      url: "/",
+      id: "4",
+    },
+    {
+      image: fireheartPoster,
+      altImage: "fireheart",
+      hoverTitle: "Fireheart",
+      url: "/",
+      id: "5",
+    },
   ],
+  href: "/trends",
   title: "Trending Now",
 };
 export const CardsActors: ICards = {
@@ -330,7 +352,16 @@ export const CardsActors: ICards = {
       url: "/",
       id: "2",
     },
+    {
+      image: tomhollandIMG,
+      altImage: "tom-holland",
+      hoverTitle: "Tom Holland",
+      hoverSubtitle: "+2 movies",
+      url: "/",
+      id: "3",
+    },
   ],
+  href: "/actors",
   title: "Best actors",
 };
 export const CardsGenres: ICards = {
@@ -350,5 +381,6 @@ export const CardsGenres: ICards = {
       id: "2",
     },
   ],
+  href: "/genres",
   title: "Genres",
 };

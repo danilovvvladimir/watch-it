@@ -35,5 +35,6 @@ export interface ICard {
 
 export interface ICards {
   cards: ICard[];
+  href: string;
   title: string;
 }
