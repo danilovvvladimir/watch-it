@@ -1,0 +1,20 @@
+@import "../../assets/styles/variables.scss";
+
+.fresh-movies-page {
+  background-color: $black-primary;
+  height: 100vh;
+  &__title {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  &__subtitle {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  &__movies {
+    display: flex;
+    justify-content: space-between;
+    gap: 36px;
+    flex-wrap: wrap;
+  }
+}
