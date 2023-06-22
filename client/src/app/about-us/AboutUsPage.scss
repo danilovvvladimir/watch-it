@@ -3,31 +3,29 @@
 .about-us-page {
   background-color: $black-primary;
   height: 100vh;
+  position: relative;
+  z-index: 1;
   &__title {
+    padding-top: 47px;
     font-size: 40px;
+    font-weight: 700;
+    max-width: 870px;
     line-height: 48px;
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: $black-primary;
-    text-align: center;
-    position: relative;
-
-    &::before {
-      content: "";
-      height: 3px;
-      // width: 100%;
-      background-color: $accent;
-      position: absolute;
-      left: -100px;
-      right: -100px;
-      top: 50%;
-      z-index: 3;
-      transform: translateY(-50%);
+    margin-bottom: 36px;
+    span {
+      color: $accent;
     }
   }
 
   &__description {
     color: $gray-light;
-    max-width: 300px;
+    max-width: 545px;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  &__decorations {
+    position: absolute;
+    top: 30px;
+    right: 500px;
   }
 }
