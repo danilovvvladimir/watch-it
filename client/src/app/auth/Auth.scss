@@ -1,0 +1,100 @@
+@import "../../assets/styles/variables.scss";
+
+.auth {
+  height: 100vh;
+  background-color: $black-primary;
+  padding-top: 80px;
+  &__title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 94px 32px 94px;
+    background-color: $black-dark;
+    border-radius: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  &__label {
+    color: #fff;
+    margin-bottom: 32px;
+    border: 2px solid $gray-dark;
+    border-radius: 10px;
+    position: relative;
+    &-span {
+      position: absolute;
+      top: -12px;
+      background-color: $black-dark;
+      left: 6px;
+      display: inline-block;
+      padding: 0 6px;
+      margin-bottom: 4px;
+      font-size: 16px;
+      font-weight: 500;
+      color: $gray-dark;
+      z-index: 3;
+    }
+  }
+  &__input {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    padding: 18px 45px 18px 12px;
+    color: $gray-light;
+    font-size: 16px;
+    font-weight: 400;
+    outline: border-radius 10px;
+    &::placeholder {
+      font-size: 16px;
+      font-family: Outfit;
+      font-weight: 400;
+      color: $gray-light;
+    }
+  }
+  &__input-icon-btn {
+    z-index: 2;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    svg {
+      path {
+        fill: $accent;
+      }
+    }
+  }
+  &__buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  &__link {
+    color: #fff;
+    transition: all 0.3s ease;
+    text-align: center;
+    &:hover {
+      color: $accent;
+    }
+  }
+  &__button {
+    padding: 12px 45px;
+  }
+}
+
+.register-page {
+  &__button {
+    padding: 12px 32px;
+  }
+}

@@ -17,7 +17,6 @@ const FreshMoviesPage: FC = () => {
         <p className="subtitle fresh-movies-page__subtitle">
           New movies and series in excellent quality: legal, safe, without ads
         </p>
-
         <div className="fresh-movies-page__movies">
           {movies.map((movie) => (
             <MovieMedium
