@@ -4,7 +4,7 @@ import { FC } from "react";
 
 // ==> Other imports <===
 import "./PopularMovies.scss";
-import MovieSmall, { MovieSmallProps } from "../MovieSmall/MovieSmall";
+import MovieSmall, { MovieSmallProps } from "../Movie/MovieSmall/MovieSmall";
 import Button from "../UI/Button/Button";
 
 interface PopularMoviesProps {

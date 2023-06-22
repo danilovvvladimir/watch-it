@@ -1,10 +1,12 @@
 import fireheartPoster from "@/assets/posters/fireheart.jpg";
 import tomhollandIMG from "@/assets/actors/tom-holland.jpg";
 import fireheartBg from "@/assets/slider/fireheart.jpg";
+import fireheartMediumIMG from "@/assets/posters/medium/fireheart.jpg";
 import {
   ICard,
   ICards,
   IMenuListItem,
+  IMovieMedium,
   IMovieSmall,
   ISlide,
 } from "@/types/types";
@@ -334,6 +336,7 @@ export const CardsFilms: ICards = {
   href: "/trends",
   title: "Trending Now",
 };
+
 export const CardsActors: ICards = {
   cards: [
     {
@@ -364,6 +367,7 @@ export const CardsActors: ICards = {
   href: "/actors",
   title: "Best actors",
 };
+
 export const CardsGenres: ICards = {
   cards: [
     {
@@ -384,3 +388,81 @@ export const CardsGenres: ICards = {
   href: "/genres",
   title: "Genres",
 };
+
+export const FreshMoviesItems: IMovieMedium[] = [
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "1",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "2",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "3",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "4",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "5",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "6",
+  },
+];
+
+export const TrendingMoviesItems: IMovieMedium[] = [
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "1",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "2",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "3",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "4",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "5",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "6",
+  },
+];

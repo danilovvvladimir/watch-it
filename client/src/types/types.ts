@@ -16,6 +16,13 @@ export interface IMovieSmall {
   id: string;
 }
 
+export interface IMovieMedium {
+  title: string;
+  url: string;
+  image: StaticImageData;
+  id: string;
+}
+
 export interface ISlide {
   bgImage: StaticImageData;
   title: string;
