@@ -6,9 +6,9 @@ import Link from "next/link";
 
 // ==> Other imports <===
 import "./MenuItem.scss";
-import { MenuListItem } from "@/constants/constants";
+import { IMenuListItem } from "@/types/types";
 
-interface MenuItemProps extends MenuListItem {
+interface MenuItemProps extends IMenuListItem {
   isActive?: boolean;
 }
 

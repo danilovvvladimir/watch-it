@@ -8,10 +8,10 @@ import { FC } from "react";
 import "./MenuList.scss";
 import MenuItem from "../MenuItem/MenuItem";
 import { usePathname, useRouter } from "next/navigation";
-import { MenuListItem } from "@/types/types";
+import { IMenuListItem } from "@/types/types";
 
 interface MenuListProps {
-  items: MenuListItem[];
+  items: IMenuListItem[];
   title: string;
 }
 

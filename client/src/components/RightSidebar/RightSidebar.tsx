@@ -8,6 +8,7 @@ import PopularMovies from "../PopularMovies/PopularMovies";
 import "./RightSidebar.scss";
 import { PopularMoviesItems } from "@/constants/constants";
 import Input from "../UI/Input/Input";
+import Search from "../Search/Search";
 
 const RightSidebar: FC = () => {
   return (

@@ -7,26 +7,33 @@ import "./MovieSmall.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { IMovieSmall } from "@/types/types";
+import { IMovie } from "@/types/movies.types";
 
-export interface MovieSmallProps extends IMovieSmall {}
+export interface MovieSmallProps extends IMovie {}
 
 const MovieSmall: FC<MovieSmallProps> = ({
+  poster,
   genres,
-  image,
   rating,
+  slug,
   title,
-  url,
 }) => {
   return (
     <li className="popular-movies__movie movie-small">
-      <Link href={url} className="movie-small__wrapper-link">
-        <Image src={image} alt={title} className="movie-small__image" />
+      <Link href={`/movies/${slug}`} className="movie-small__wrapper-link">
+        <Image
+          src={poster}
+          width={50}
+          height={50}
+          alt={title}
+          className="movie-small__image"
+        />
         <div className="movie-small__textbox">
           <h4 className="movie-small__title">{title}</h4>
           <div className="movie-small__genres">
             {genres.map((genre, index) => (
-              <div key={genre} className="movie-small__genres-item">
-                {genre}
+              <div key={genre._id} className="movie-small__genres-item">
+                {genre.name}
                 {index !== genres.length - 1 && ", "}
               </div>
             ))}

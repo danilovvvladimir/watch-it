@@ -17,11 +17,12 @@ export class FileController {
   @Post()
   @HttpCode(200)
   @Auth("admin")
-  @UseInterceptors(FileInterceptor("file"))
+  @UseInterceptors(FileInterceptor("image"))
   async uploadFile(
     @UploadedFile() file: Express.Multer.File,
     @Query("folder") folder?: string,
   ) {
+    console.log("1");
     return this.fileService.saveFiles([file], folder);
   }
 }

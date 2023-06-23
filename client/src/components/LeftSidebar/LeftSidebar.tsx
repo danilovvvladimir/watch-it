@@ -2,10 +2,11 @@
 import { FC } from "react";
 
 // ==> Components imports <===
+import MenuList from "../MenuList/MenuList";
+import Logo from "../Logo/Logo";
 
 // ==> Other imports <===
 import "./LeftSidebar.scss";
-import MenuList from "../MenuList/MenuList";
 import {
   GeneralAdminListItems,
   GeneralAuthListItems,
@@ -13,9 +14,8 @@ import {
   GenresListItems,
   NavigationListItems,
 } from "@/constants/constants";
-import Logo from "../Logo/Logo";
 
-const LeftSidebar: FC = () => {
+const LeftSidebar: FC = async () => {
   const isAuth = true;
   const isAdmin = true;
 

@@ -6,26 +6,27 @@ import { FC } from "react";
 import "./PopularMovies.scss";
 import MovieSmall, { MovieSmallProps } from "../Movie/MovieSmall/MovieSmall";
 import Button from "../UI/Button/Button";
+import { API_URL } from "@/configs/api.config";
+import { IMovie } from "@/types/movies.types";
 
-interface PopularMoviesProps {
-  items: MovieSmallProps[];
-}
+const getMovies = async () => {
+  const response = await fetch(API_URL + "/movies", {
+    next: { revalidate: 60 },
+  });
 
-const PopularMovies: FC<PopularMoviesProps> = ({ items }) => {
+  return response.json();
+};
+
+const PopularMovies: FC = async () => {
+  const items: IMovie[] = await getMovies();
+  console.log(items);
+
   return (
     <div className="menu__item">
       <h4 className="menu__item-title">Popular Movies</h4>
       <ul className="menu__list">
         {items.map((item) => (
-          <MovieSmall
-            id={item.id}
-            key={item.id}
-            title={item.title}
-            url={item.url}
-            image={item.image}
-            rating={item.rating}
-            genres={item.genres}
-          />
+          <MovieSmall key={item._id} {...item} />
         ))}
       </ul>
       <Button className="menu__button">See more</Button>

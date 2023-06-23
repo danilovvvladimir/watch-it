@@ -10,7 +10,7 @@ export interface IMenuListItem {
 export interface IMovieSmall {
   title: string;
   url: string;
-  image: StaticImageData;
+  image: string;
   rating: number;
   genres: string[];
   id: string;
