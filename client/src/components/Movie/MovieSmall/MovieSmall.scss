@@ -16,10 +16,12 @@
     color: #fff;
     font-weight: 500;
     font-size: 18px;
+    max-width: 100px;
     margin-bottom: 4px;
   }
   &__genres {
     display: flex;
+    gap: 3px;
     flex-wrap: wrap;
     margin-bottom: 12px;
   }

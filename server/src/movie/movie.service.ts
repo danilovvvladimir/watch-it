@@ -72,10 +72,10 @@ export class MovieService {
       description: "",
       poster: "",
       title: "",
-      videoURL: "",
+      videoUrl: "",
       slug: "",
       parameters: {
-        country: "",
+        countries: [],
         duration: 0,
         year: 0,
         ageLimit: 0,

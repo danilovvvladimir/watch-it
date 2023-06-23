@@ -6,7 +6,6 @@ import PopularMovies from "../PopularMovies/PopularMovies";
 
 // ==> Other imports <===
 import "./RightSidebar.scss";
-import { PopularMoviesItems } from "@/constants/constants";
 import Input from "../UI/Input/Input";
 import Search from "../Search/Search";
 
@@ -36,7 +35,7 @@ const RightSidebar: FC = () => {
         />
       </label>
 
-      <PopularMovies items={PopularMoviesItems} />
+      <PopularMovies />
     </aside>
   );
 };

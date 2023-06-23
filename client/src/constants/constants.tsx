@@ -1,7 +1,7 @@
 import fireheartPoster from "@/assets/posters/fireheart.jpg";
 import tomhollandIMG from "@/assets/actors/tom-holland.jpg";
 import fireheartBg from "@/assets/slider/fireheart.jpg";
-import fireheartMediumIMG from "@/assets/posters/medium/fireheart.jpg";
+import fireheartMediumIMG from "@/assets/posters/medium/fireheart-wide.jpg";
 import {
   ICard,
   ICards,
@@ -331,33 +331,6 @@ export const GeneralAdminListItems: IMenuListItem[] = [
     id: (
       GeneralAuthListItems[GeneralAuthListItems.length - 1].id + 1
     ).toString(),
-  },
-];
-
-export const PopularMoviesItems: IMovieSmall[] = [
-  {
-    title: "Fireheart",
-    genres: ["Cartoons", "Comedy"],
-    image: fireheartPoster,
-    rating: 4.1,
-    url: "/",
-    id: "1",
-  },
-  {
-    title: "Fireheart",
-    genres: ["Cartoons", "Comedy"],
-    image: fireheartPoster,
-    rating: 4.1,
-    url: "/",
-    id: "2",
-  },
-  {
-    title: "Fireheart",
-    genres: ["Cartoons", "Comedy"],
-    image: fireheartPoster,
-    rating: 4.1,
-    url: "/",
-    id: "3",
   },
 ];
 

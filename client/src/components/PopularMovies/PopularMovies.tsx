@@ -10,16 +10,13 @@ import { API_URL } from "@/configs/api.config";
 import { IMovie } from "@/types/movies.types";
 
 const getMovies = async () => {
-  const response = await fetch(API_URL + "/movies", {
-    next: { revalidate: 60 },
-  });
+  const response = await fetch(API_URL + "/movies");
 
   return response.json();
 };
 
 const PopularMovies: FC = async () => {
   const items: IMovie[] = await getMovies();
-  console.log(items);
 
   return (
     <div className="menu__item">

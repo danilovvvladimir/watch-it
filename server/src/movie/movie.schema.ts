@@ -11,7 +11,7 @@ export class MovieParameters {
   duration: number;
 
   @Prop()
-  country: string;
+  countries: string[];
 
   @Prop()
   ageLimit: number;
@@ -36,7 +36,7 @@ export class Movie {
   @Prop()
   description: string;
 
-  @Prop({ unique: true })
+  @Prop()
   videoUrl: string;
 
   @Prop({ default: 0 })

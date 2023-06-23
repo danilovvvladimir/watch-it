@@ -1,10 +1,4 @@
-import {
-  IsArray,
-  IsBoolean,
-  IsNumber,
-  IsObject,
-  IsString,
-} from "class-validator";
+import { IsArray, IsNumber, IsObject, IsString } from "class-validator";
 
 class MovieParameters {
   @IsNumber()
@@ -14,7 +8,7 @@ class MovieParameters {
   duration: number;
 
   @IsString()
-  country: string;
+  countries: string[];
 
   @IsNumber()
   ageLimit: number;
@@ -34,7 +28,7 @@ export class CreateMovieDTO {
   description: string;
 
   @IsString()
-  videoURL: string;
+  videoUrl: string;
 
   @IsString()
   poster: string;
