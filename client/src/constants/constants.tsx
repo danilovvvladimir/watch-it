@@ -5,6 +5,7 @@ import fireheartMediumIMG from "@/assets/posters/medium/fireheart.jpg";
 import {
   ICard,
   ICards,
+  IGenreCollection,
   IMenuListItem,
   IMovieMedium,
   IMovieSmall,
@@ -33,7 +34,7 @@ export const NavigationListItems: IMenuListItem[] = [
     id: "1",
   },
   {
-    title: "Discovery",
+    title: "Genres",
     icon: (
       <svg
         width="24"
@@ -56,7 +57,7 @@ export const NavigationListItems: IMenuListItem[] = [
         </defs>
       </svg>
     ),
-    url: "/discovery",
+    url: "/genres",
     id: "2",
   },
   {
@@ -464,5 +465,302 @@ export const TrendingMoviesItems: IMovieMedium[] = [
     image: fireheartMediumIMG,
     url: "/",
     id: "6",
+  },
+];
+
+export const GenresCollectionItems: IGenreCollection[] = [
+  {
+    genreTitle: "Cartoons",
+    url: "genres/cartoons",
+    movies: [
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "1",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "2",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "3",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "4",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "5",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "6",
+      },
+    ],
+  },
+  {
+    genreTitle: "Horror",
+    url: "genres/horror",
+    movies: [
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "1",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "2",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "3",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "4",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "5",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "6",
+      },
+    ],
+  },
+  {
+    genreTitle: "Horror",
+    url: "genres/horror",
+    movies: [
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "1",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "2",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "3",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "4",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "5",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "6",
+      },
+    ],
+  },
+  {
+    genreTitle: "Horror",
+    url: "genres/horror",
+    movies: [
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "1",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "2",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "3",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "4",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "5",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "6",
+      },
+    ],
+  },
+  {
+    genreTitle: "Horror",
+    url: "genres/horror",
+    movies: [
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "1",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "2",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "3",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "4",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "5",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "6",
+      },
+    ],
+  },
+  {
+    genreTitle: "Horror",
+    url: "genres/horror",
+    movies: [
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "1",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "2",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "3",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "4",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "5",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "6",
+      },
+    ],
+  },
+  {
+    genreTitle: "Horror",
+    url: "genres/horror",
+    movies: [
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "1",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "2",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "3",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "4",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "5",
+      },
+      {
+        title: "Fireheart",
+        image: fireheartMediumIMG,
+        url: "/",
+        id: "6",
+      },
+    ],
   },
 ];

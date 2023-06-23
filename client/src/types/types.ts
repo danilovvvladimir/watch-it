@@ -45,3 +45,9 @@ export interface ICards {
   href: string;
   title: string;
 }
+
+export interface IGenreCollection {
+  genreTitle: string;
+  url: string;
+  movies: IMovieMedium[];
+}

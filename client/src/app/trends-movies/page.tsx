@@ -3,7 +3,6 @@ import { FC } from "react";
 // ==> Components imports <===
 
 // ==> Other imports <===
-import "./TrendsMoviesPage.scss";
 import { IMovieMedium } from "@/types/types";
 import MovieMedium from "@/components/Movie/MovieMedium/MovieMedium";
 import { TrendingMoviesItems } from "@/constants/constants";
@@ -11,15 +10,15 @@ import { TrendingMoviesItems } from "@/constants/constants";
 const TrendsMoviesPage: FC = () => {
   const movies = TrendingMoviesItems;
   return (
-    <section className="fresh-movies-page">
+    <section className="fresh-movies-page list-page">
       <div className="container">
-        <h1 className="title fresh-movies-page__title">Trends</h1>
-        <p className="subtitle fresh-movies-page__subtitle">
+        <h1 className="title list-page__title">Trends</h1>
+        <p className="subtitle list-page__subtitle">
           Trending movies and series in excellent quality: legal, safe, without
           ads
         </p>
 
-        <div className="fresh-movies-page__movies">
+        <div className="list-page__movies">
           {movies.map((movie) => (
             <MovieMedium
               key={movie.id}
