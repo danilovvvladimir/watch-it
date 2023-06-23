@@ -839,3 +839,44 @@ export const GenresCollectionItems: IGenreCollection[] = [
     ],
   },
 ];
+
+export const cartoonsMovies: IMovieMedium[] = [
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "1",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "2",
+  },
+  {
+    title: "Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "3",
+  },
+];
+export const horrorMovies: IMovieMedium[] = [
+  {
+    title: "Horror Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "1",
+  },
+  {
+    title: "Horror Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "2",
+  },
+  {
+    title: "Horror Fireheart",
+    image: fireheartMediumIMG,
+    url: "/",
+    id: "3",
+  },
+];
