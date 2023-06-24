@@ -1,0 +1,33 @@
+@import "../../../assets/styles/variables.scss";
+
+.search-list {
+  // position: relative;
+  position: absolute;
+
+  z-index: 5;
+  background-color: $accent;
+  top: 40px;
+  left: -5px;
+  right: -5px;
+  border-radius: 20px;
+  &__item {
+    background-color: transparent;
+    padding: 12px 0 12px 20px;
+    display: flex;
+    border-radius: 20px;
+    gap: 12px;
+    align-items: center;
+    color: #fff;
+    &:hover {
+      background-color: $accent-hover;
+    }
+  }
+  &__image {
+    object-fit: cover;
+    border-radius: 5px;
+    object-position: top;
+  }
+  &__title {
+    max-width: 100px;
+  }
+}

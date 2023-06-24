@@ -16,7 +16,6 @@ import SkeletonLoader from "./SkeletonLoader/SkeletonLoader";
 
 const getPopularGenres = async () => {
   const response = await fetch("http://localhost:4444/api/genres");
-  console.log("response:", response);
 
   return response.json();
 };
@@ -28,7 +27,6 @@ const GenresMenuList: FC = () => {
   React.useEffect(() => {
     const fetchSomeGenres = async () => {
       const genres: IGenre[] = await getPopularGenres();
-      console.log(genres);
 
       setPopularGenres(genres.slice(0, 4));
     };
