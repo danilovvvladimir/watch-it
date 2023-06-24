@@ -10,6 +10,7 @@ import SearchList from "./SearchList/SearchList";
 import "./Search.scss";
 import React from "react";
 import { MovieService } from "@/services/movie.service";
+import { useDebounce } from "@/hooks/useDebounce";
 
 const Search: FC = () => {
   const [searchTerm, setSearchTerm] = React.useState<string>("");
@@ -17,14 +18,18 @@ const Search: FC = () => {
     React.useState<boolean>(true);
   const [data, setData] = React.useState<any>("");
   const searchRef = React.useRef<HTMLInputElement>(null);
+  const debouncedSearch = useDebounce(searchTerm, 250);
 
   React.useEffect(() => {
     const getData = async () => {
       const data = await MovieService.getMovies(searchTerm);
+      console.log(data.data);
       setData(data.data);
     };
-    getData();
-  }, [searchTerm]);
+    if (searchTerm !== "") {
+      getData();
+    }
+  }, [debouncedSearch]);
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
