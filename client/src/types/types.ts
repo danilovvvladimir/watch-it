@@ -32,7 +32,7 @@ export interface ISlide {
 }
 
 export interface ICard {
-  image: StaticImageData;
+  image: string;
   altImage: string;
   hoverTitle?: string;
   hoverSubtitle?: string;

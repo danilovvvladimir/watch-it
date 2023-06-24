@@ -19,7 +19,13 @@ const Card: FC<CardProps> = ({
 }) => {
   return (
     <Link href={url} className="card">
-      <Image src={image} alt={altImage} className="card__image" />
+      <Image
+        src={image}
+        alt={altImage}
+        className="card__image"
+        width={200}
+        height={297}
+      />
       <div className="card__hover">
         <div className="card__hover-textbox">
           <div className="card__hover-title">{hoverTitle}</div>
