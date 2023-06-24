@@ -7,10 +7,10 @@ import "./HomePage.scss";
 import Slider from "@/components/Slider/Slider";
 import { Slides } from "@/constants/constants";
 import CardList from "@/components/CardList/CardList";
-import { IActor, IGenre, IMovie } from "@/types/movies.types";
+import { IActor, ICollection, IGenre, IMovie } from "@/types/movies.types";
 import {
   transformActorToCard,
-  transformGenreToCard,
+  transformGenreCollectionToCard,
   transformMovieToCard,
 } from "@/utils/transformToCard";
 import { ICard, ICards } from "@/types/types";
@@ -27,8 +27,8 @@ const getActors = async () => {
   return response.json();
 };
 
-const getGenres = async () => {
-  const response = await fetch("http://localhost:4444/api/genres");
+const getGenresCollection = async () => {
+  const response = await fetch("http://localhost:4444/api/genres/collections");
 
   return response.json();
 };
@@ -36,7 +36,7 @@ const getGenres = async () => {
 const HomePage: FC = async () => {
   const movies: IMovie[] = await getMovies();
   const actors: IActor[] = await getActors();
-  const genres: IGenre[] = await getGenres();
+  const genresCollection: ICollection[] = await getGenresCollection();
 
   const moviesCards: ICards = {
     cards: movies.slice(0, 5).map((movie) => transformMovieToCard(movie)),
@@ -48,8 +48,12 @@ const HomePage: FC = async () => {
     href: "/actors",
     title: "Best Actors",
   };
-  const genresCards: ICards = {
-    cards: genres.slice(0, 5).map((genre) => transformGenreToCard(genre)),
+  const genreCollectionCards: ICards = {
+    cards: genresCollection
+      .slice(0, 5)
+      .map((genreCollection) =>
+        transformGenreCollectionToCard(genreCollection)
+      ),
     href: "/genres",
     title: "Genre",
   };
@@ -64,7 +68,7 @@ const HomePage: FC = async () => {
         {/* List - actors*/}
         <CardList cards={actorsCards} />
         {/* List - genres*/}
-        <CardList cards={genresCards} />
+        <CardList cards={genreCollectionCards} />
       </div>
     </section>
   );

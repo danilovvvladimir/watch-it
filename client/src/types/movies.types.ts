@@ -33,3 +33,11 @@ export interface IMovie {
   rating: number;
   slug: string;
 }
+
+export interface ICollection {
+  _id: string;
+  imageNormal: string;
+  imageWide: string;
+  slug: string;
+  name: string;
+}

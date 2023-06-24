@@ -1,4 +1,4 @@
-import { IActor, IGenre, IMovie } from "@/types/movies.types";
+import { IActor, ICollection, IGenre, IMovie } from "@/types/movies.types";
 import { ICard } from "@/types/types";
 
 export const transformMovieToCard = (movie: IMovie): ICard => {
@@ -19,12 +19,14 @@ export const transformActorToCard = (actor: IActor): ICard => {
     hoverTitle: actor.name,
   };
 };
-export const transformGenreToCard = (genre: IGenre): ICard => {
+export const transformGenreCollectionToCard = (
+  collection: ICollection
+): ICard => {
   return {
-    id: genre._id,
-    image: "",
-    url: genre.slug,
-    altImage: genre.name,
-    hoverTitle: genre.name,
+    id: collection._id,
+    image: collection.imageNormal,
+    url: collection.slug,
+    altImage: collection.name,
+    hoverTitle: collection.name,
   };
 };
