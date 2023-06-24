@@ -7,6 +7,9 @@ import "./SingleGenrePage.scss";
 import { notFound, useSearchParams } from "next/navigation";
 import { cartoonsMovies, horrorMovies } from "@/constants/constants";
 import MovieMedium from "@/components/Movie/MovieMedium/MovieMedium";
+import { MovieService } from "@/services/movie.service";
+import { IGenre, IMovie } from "@/types/movies.types";
+import { GenreService } from "@/services/genre.service";
 
 interface SingleGenrePageProps {
   params: {
@@ -32,20 +35,22 @@ export const generateMetadata = async ({
   };
 };
 
-const SingleGenrePage: FC<SingleGenrePageProps> = ({ params: { slug } }) => {
-  let genreMovies;
-  switch (slug) {
-    case "horror": {
-      genreMovies = horrorMovies;
-      break;
-    }
-    case "cartoons": {
-      genreMovies = cartoonsMovies;
-      break;
-    }
-    default:
+const SingleGenrePage: FC<SingleGenrePageProps> = async ({
+  params: { slug },
+}) => {
+  console.log(slug);
+  let genreMovies: IMovie[];
+  try {
+    const responseGenre = await GenreService.getGenreIdBySlug(slug);
+    const genreId = responseGenre.data._id;
+    if (!genreId) {
       notFound();
-      break;
+    }
+
+    const response = await MovieService.getMoviesByGenre(genreId);
+    genreMovies = response.data;
+  } catch (error) {
+    notFound();
   }
 
   return (
@@ -60,11 +65,11 @@ const SingleGenrePage: FC<SingleGenrePageProps> = ({ params: { slug } }) => {
         <div className="list-page__movies">
           {genreMovies.map((movie) => (
             <MovieMedium
-              key={movie.id}
-              id={movie.id}
+              key={movie._id}
+              id={movie._id}
               title={movie.title}
-              url={movie.url}
-              image={movie.image}
+              url={movie.slug}
+              image={movie.bigPoster}
             />
           ))}
         </div>

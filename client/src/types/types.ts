@@ -19,7 +19,7 @@ export interface IMovieSmall {
 export interface IMovieMedium {
   title: string;
   url: string;
-  image: StaticImageData;
+  image: string;
   id: string;
 }
 

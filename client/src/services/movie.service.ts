@@ -12,4 +12,9 @@ export const MovieService = {
         : {},
     });
   },
+  async getMoviesByGenre(genreId: string) {
+    return axios.post<IMovie[]>(`${API_URL}/movies/by-genres`, {
+      genreIds: [genreId],
+    });
+  },
 };

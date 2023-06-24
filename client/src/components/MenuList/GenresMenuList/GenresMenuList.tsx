@@ -45,7 +45,7 @@ const GenresMenuList: FC = () => {
               ? transformedIcon
               : defaultGenreIcon;
 
-            const genreUrl = `genres/${genre.slug}`;
+            const genreUrl = `/genres/${genre.slug}`;
             return (
               <MenuItem
                 key={genre._id}

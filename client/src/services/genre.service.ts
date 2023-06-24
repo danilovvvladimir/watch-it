@@ -1,4 +1,4 @@
-import { getGenresUrl } from "@/configs/api.config";
+import { API_URL, getGenresUrl } from "@/configs/api.config";
 import { IGenre } from "@/types/movies.types";
 import axios from "@/utils/axios";
 
@@ -9,5 +9,8 @@ export const GenreService = {
         limit,
       },
     });
+  },
+  async getGenreIdBySlug(slug: string) {
+    return axios.get<IGenre>(`${API_URL}/genres/by-slug/${slug}`);
   },
 };
