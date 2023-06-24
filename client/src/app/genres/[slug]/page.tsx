@@ -10,6 +10,7 @@ import MovieMedium from "@/components/Movie/MovieMedium/MovieMedium";
 import { MovieService } from "@/services/movie.service";
 import { IGenre, IMovie } from "@/types/movies.types";
 import { GenreService } from "@/services/genre.service";
+import capitalizeString from "@/utils/capitalizeString";
 
 interface SingleGenrePageProps {
   params: {
@@ -17,28 +18,17 @@ interface SingleGenrePageProps {
   };
 }
 
-const capitilizeString = (str: string): string | null => {
-  const trimmedString = str.trim();
-  if (trimmedString.trim() === "") {
-    return null;
-  }
-  const firstLetter = trimmedString.charAt(0).toUpperCase();
-  const editedSlug = firstLetter + trimmedString.toLowerCase().substring(1);
-  return editedSlug;
-};
-
 export const generateMetadata = async ({
   params: { slug },
 }: SingleGenrePageProps) => {
   return {
-    title: `Genres | ${capitilizeString(slug)}`,
+    title: `Genres | ${capitalizeString(slug)}`,
   };
 };
 
 const SingleGenrePage: FC<SingleGenrePageProps> = async ({
   params: { slug },
 }) => {
-  console.log(slug);
   let genreMovies: IMovie[];
   try {
     const responseGenre = await GenreService.getGenreIdBySlug(slug);
@@ -57,7 +47,7 @@ const SingleGenrePage: FC<SingleGenrePageProps> = async ({
     <section className="genre-page list-page">
       <div className="container">
         <h1 className="title list-page__title">
-          Genres / {capitilizeString(slug)}
+          Genres / {capitalizeString(slug)}
         </h1>
         <p className="subtitle list-page__subtitle">
           New movies and series in excellent quality: legal, safe, without ads
@@ -69,7 +59,7 @@ const SingleGenrePage: FC<SingleGenrePageProps> = async ({
               id={movie._id}
               title={movie.title}
               url={movie.slug}
-              image={movie.bigPoster}
+              image={movie.imageMedium}
             />
           ))}
         </div>

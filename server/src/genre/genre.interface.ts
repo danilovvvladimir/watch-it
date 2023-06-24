@@ -1,7 +1,7 @@
 export interface ICollection {
   _id: string;
   imageNormal: string;
-  imageWide: string;
+  imageMedium: string;
   name: string;
   slug: string;
 }

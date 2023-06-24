@@ -28,7 +28,7 @@ const CardList: FC<CardListProps> = ({ cards: { cards, title, href } }) => {
             altImage={card.altImage}
             hoverTitle={card.hoverTitle}
             hoverSubtitle={card.hoverSubtitle}
-            url={card.url}
+            url={`${href}/${card.url}`}
           />
         ))}
         <Link href={href} className="button cards__button">

@@ -43,10 +43,13 @@ export class Movie {
   countOpened?: number;
 
   @Prop()
-  poster: string;
+  imageNormal: string;
 
   @Prop()
-  bigPoster: string;
+  imageMedium: string;
+
+  @Prop()
+  imageSpinner: string;
 
   @Prop({ default: 4.0 })
   rating?: number;

@@ -17,4 +17,7 @@ export const MovieService = {
       genreIds: [genreId],
     });
   },
+  async getMoviesBySlug(slug: string) {
+    return axios.get<IMovie>(`${API_URL}/movies/by-slug/${slug}`);
+  },
 };

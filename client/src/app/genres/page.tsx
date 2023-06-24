@@ -31,7 +31,7 @@ const GenresPage: FC = async () => {
                 key={genre._id}
                 id={genre._id}
                 title={genre.name}
-                image={genre.imageWide}
+                image={genre.imageMedium}
                 url={genreUrl}
                 isCollection={true}
               />

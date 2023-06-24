@@ -31,10 +31,13 @@ export class CreateMovieDTO {
   videoUrl: string;
 
   @IsString()
-  poster: string;
+  imageNormal: string;
 
   @IsString()
-  bigPoster: string;
+  imageMedium: string;
+
+  @IsString()
+  imageSpinner: string;
 
   @IsArray()
   @IsString({ each: true })

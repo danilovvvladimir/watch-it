@@ -4,7 +4,7 @@ import { ICard } from "@/types/types";
 export const transformMovieToCard = (movie: IMovie): ICard => {
   return {
     id: movie._id,
-    image: movie.poster,
+    image: movie.imageNormal,
     url: movie.slug,
     altImage: movie.title,
     hoverTitle: movie.title,

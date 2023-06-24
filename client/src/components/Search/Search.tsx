@@ -23,7 +23,6 @@ const Search: FC = () => {
   React.useEffect(() => {
     const getData = async () => {
       const data = await MovieService.getMovies(searchTerm);
-      console.log(data.data);
       setData(data.data);
     };
     if (searchTerm !== "") {

@@ -1,0 +1,92 @@
+@import "../../../assets/styles/variables.scss";
+
+.single-movie-page {
+  background-color: $black-primary;
+  height: 100vh;
+  &__header {
+    width: 1200px;
+    height: 288px;
+    position: relative;
+    &-image {
+      border-radius: 20px;
+      z-index: 1;
+      object-fit: cover;
+    }
+    &-surface {
+      border-radius: 20px;
+      background: rgb(0, 0, 0);
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 1) 20%,
+        rgba(0, 0, 0, 0) 80%
+      );
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      top: 0;
+      z-index: 3;
+    }
+    &-textbox {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      left: 24px;
+      z-index: 5;
+    }
+  }
+  &__title {
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  &__info {
+    display: flex;
+    gap: 16px;
+    font-size: 16px;
+    color: $white-light;
+    margin-bottom: 12px;
+    &-item {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: $white-light;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -10px;
+      }
+      &:last-child {
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+  &__genres,
+  &__actors {
+    display: flex;
+    color: $gray-light;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  &__genres-list,
+  &__actors-list {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+  }
+  &__genre-item,
+  &__actors-item {
+    color: #fff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

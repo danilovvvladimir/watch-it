@@ -1,7 +1,7 @@
 export interface IParameters {
   year: number;
   duration: number;
-  country: string;
+  countries: string[];
 }
 
 export interface IActor {
@@ -22,8 +22,9 @@ export interface IGenre {
 
 export interface IMovie {
   _id: string;
-  poster: string;
-  bigPoster: string;
+  imageNormal: string;
+  imageMedium: string;
+  imageSpinner: string;
   title: string;
   parameters: IParameters;
   genres: IGenre[];
@@ -37,7 +38,7 @@ export interface IMovie {
 export interface ICollection {
   _id: string;
   imageNormal: string;
-  imageWide: string;
+  imageMedium: string;
   slug: string;
   name: string;
 }

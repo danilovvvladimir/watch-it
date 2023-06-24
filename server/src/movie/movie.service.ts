@@ -13,7 +13,7 @@ export class MovieService {
   constructor(@InjectModel(Movie.name) private movieModel: Model<Movie>) {}
 
   async findById(_id: string) {
-    const movie = await this.movieModel.findById(_id);
+    const movie = await this.movieModel.findById(_id).populate("genres actors");
     if (!movie) {
       throw new NotFoundException(MOVIE_NOT_FOUND_MESSAGE);
     }
@@ -21,7 +21,9 @@ export class MovieService {
   }
 
   async findBySlug(slug: string) {
-    const movie = await this.movieModel.findOne({ slug });
+    const movie = await this.movieModel
+      .findOne({ slug })
+      .populate("genres actors");
     if (!movie) {
       throw new NotFoundException(MOVIE_NOT_FOUND_MESSAGE);
     }
@@ -29,11 +31,17 @@ export class MovieService {
   }
 
   async findByActor(actorId: Types.ObjectId) {
-    return this.movieModel.find({ actors: actorId }).exec();
+    return this.movieModel
+      .find({ actors: actorId })
+      .populate("genres actors")
+      .exec();
   }
 
   async findByGenres(genreIds: Types.ObjectId[]) {
-    return this.movieModel.find({ genres: { $in: genreIds } }).exec();
+    return this.movieModel
+      .find({ genres: { $in: genreIds } })
+      .populate("genres actors")
+      .exec();
   }
 
   async updateCountOpened(slug: string) {
@@ -66,11 +74,12 @@ export class MovieService {
 
   async createMovie(): Promise<Types.ObjectId> {
     const defaultValue: CreateMovieDTO = {
-      bigPoster: "",
+      imageMedium: "",
+      imageNormal: "",
+      imageSpinner: "",
       actors: [],
       genres: [],
       description: "",
-      poster: "",
       title: "",
       videoUrl: "",
       slug: "",

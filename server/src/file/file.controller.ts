@@ -22,7 +22,6 @@ export class FileController {
     @UploadedFile() file: Express.Multer.File,
     @Query("folder") folder?: string,
   ) {
-    console.log("1");
     return this.fileService.saveFiles([file], folder);
   }
 }
