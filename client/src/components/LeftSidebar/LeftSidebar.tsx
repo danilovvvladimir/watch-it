@@ -14,8 +14,11 @@ import {
   GenresListItems,
   NavigationListItems,
 } from "@/constants/constants";
+import { API_URL } from "@/configs/api.config";
+import { IGenre } from "@/types/movies.types";
+import GenresMenuList from "../MenuList/GenresMenuList/GenresMenuList";
 
-const LeftSidebar: FC = async () => {
+const LeftSidebar: FC = () => {
   const isAuth = true;
   const isAdmin = true;
 
@@ -30,7 +33,7 @@ const LeftSidebar: FC = async () => {
       <Logo className="sidebar__logo" />
       <nav className="menu">
         <MenuList items={NavigationListItems} title="Menu" />
-        <MenuList items={GenresListItems} title="Popular Genres" />
+        <GenresMenuList />
         <MenuList items={generalList} title="General" />
       </nav>
     </aside>
