@@ -10,11 +10,17 @@ import { notFound } from "next/navigation";
 import { MovieService } from "@/services/movie.service";
 import { IMovie } from "@/types/movies.types";
 import Link from "next/link";
+import Button from "@/components/UI/Button/Button";
+import CardList from "@/components/CardList/CardList";
+import { GenreService } from "@/services/genre.service";
+import { ICard, ICards } from "@/types/types";
+import { transformMovieToCard } from "@/utils/transformToCard";
 
 interface SingleMoviePageProps {
   params: {
     slug: string;
   };
+  isAuth: boolean;
 }
 
 export const generateMetadata = async ({
@@ -34,11 +40,26 @@ export const generateMetadata = async ({
 
 const SingleMoviePage: FC<SingleMoviePageProps> = async ({
   params: { slug },
+  isAuth,
 }) => {
   let movie: IMovie;
+  let finalSimilarMoviesCards: ICards;
   try {
     const { data } = await MovieService.getMoviesBySlug(slug);
     movie = data;
+
+    const { data: similarMovies } = await MovieService.getMoviesByGenre(
+      movie.genres[0]._id
+    );
+
+    const similarMoviesCards = similarMovies
+      .filter((similarMovie) => similarMovie._id !== movie._id)
+      .map((similarMovie) => transformMovieToCard(similarMovie));
+    finalSimilarMoviesCards = {
+      title: "Similar Movies",
+      href: `/genres/${movie.genres[0].slug}`,
+      cards: similarMoviesCards,
+    };
   } catch (error) {
     notFound();
   }
@@ -112,9 +133,42 @@ const SingleMoviePage: FC<SingleMoviePageProps> = async ({
           </div>
         </div>
         <div className="single-movie-page__content">
-          <div className="single-movie-page__video"></div>
-          <div className="single-movie-page__rating"></div>
+          <div className="single-movie-page__video">
+            {isAuth ? (
+              <div className="single-movie-page__video--auth"></div>
+            ) : (
+              <div className="single-movie-page__video--notauth">
+                <div className="single-movie-page__video-message">
+                  You must be logged in to start watching
+                </div>
+                <Link
+                  href="/auth/login"
+                  className="button  single-movie-page__video-link"
+                >
+                  Sign In
+                </Link>
+              </div>
+            )}
+          </div>
+          <div className="single-movie-page__rating">
+            {isAuth ? (
+              <div className="single-movie-page__rating--auth"></div>
+            ) : (
+              <div className="single-movie-page__rating--notauth">
+                <div className="single-movie-page__rating-message">
+                  Do you like the movie?
+                </div>
+                <span className="single-movie-page__rating-description">
+                  Share your opinion on it.
+                </span>
+                <Link href="/auth/login" className="button">
+                  Sign In
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
+        <CardList cards={finalSimilarMoviesCards} />
       </div>
     </section>
   );

@@ -2,11 +2,12 @@
 
 .single-movie-page {
   background-color: $black-primary;
-  height: 100vh;
+  // height: 100vh;
   &__header {
     width: 1200px;
     height: 288px;
     position: relative;
+    margin-bottom: 48px;
     &-image {
       border-radius: 20px;
       z-index: 1;
@@ -88,5 +89,66 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 64px;
+  }
+  &__video {
+    width: 940px;
+    height: 400px;
+    // background-color: $gray-light;
+    position: relative;
+    border-radius: 20px;
+  }
+  &__video--notauth {
+    border-radius: 20px;
+    background-color: #202226;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__video-message {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  &__rating {
+    width: 236px;
+    height: 150px;
+    position: relative;
+  }
+  &__rating--notauth {
+    border-radius: 20px;
+    background-color: $black-dark;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__rating-message {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  &__rating-description {
+    color: $gray-light;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
   }
 }

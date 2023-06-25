@@ -30,6 +30,7 @@ const SingleGenrePage: FC<SingleGenrePageProps> = async ({
   params: { slug },
 }) => {
   let genreMovies: IMovie[];
+
   try {
     const responseGenre = await GenreService.getGenreIdBySlug(slug);
     const genreId = responseGenre.data._id;
@@ -58,7 +59,7 @@ const SingleGenrePage: FC<SingleGenrePageProps> = async ({
               key={movie._id}
               id={movie._id}
               title={movie.title}
-              url={movie.slug}
+              url={`/movies/${movie.slug}`}
               image={movie.imageMedium}
             />
           ))}
