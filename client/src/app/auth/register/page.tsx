@@ -3,9 +3,9 @@
 // ==> Libs imports <===
 import { FC, useState } from "react";
 import Link from "next/link";
-
-import Image from "next/image";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+
 // ==> Components imports <===
 import Button from "@/components/UI/Button/Button";
 
@@ -13,9 +13,13 @@ import Button from "@/components/UI/Button/Button";
 import "../Auth.scss";
 import { IAuthInput } from "@/types/auth.types";
 import { emailRegex } from "@/constants/regex";
+import { AppDispatch, RootState } from "@/store/store";
+import { login, register as registerUser } from "@/store/user/user.actions";
 
 const RegisterPage: FC = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const dispatch = useDispatch<AppDispatch>();
+  // const {isLoading, user} = useSelector((state: RootState) => state.user);
 
   const handlePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -29,7 +33,8 @@ const RegisterPage: FC = () => {
   } = useForm<IAuthInput>({ mode: "onChange" });
 
   const onSubmit: SubmitHandler<IAuthInput> = (data) => {
-    console.log(data);
+    // console.log(data);
+    dispatch(registerUser(data));
     reset();
   };
   return (

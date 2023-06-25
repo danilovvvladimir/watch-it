@@ -1,7 +1,11 @@
+"use client";
+
 import "@/assets/styles/globals.scss";
 import Menu from "@/components/Menu/Menu";
 import { Inter } from "next/font/google";
 import "./Layout.scss";
+import { Provider } from "react-redux";
+import { store } from "@/store/store";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Menu />
-        <main className="main">{children}</main>
+        <Provider store={store}>
+          <main className="main">{children}</main>
+        </Provider>
       </body>
     </html>
   );
