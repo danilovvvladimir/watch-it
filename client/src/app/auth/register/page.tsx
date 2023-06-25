@@ -4,12 +4,15 @@
 import { FC, useState } from "react";
 import Link from "next/link";
 
+import Image from "next/image";
+import { useForm, SubmitHandler } from "react-hook-form";
 // ==> Components imports <===
 import Button from "@/components/UI/Button/Button";
 
 // ==> Other imports <===
 import "../Auth.scss";
-import Image from "next/image";
+import { IAuthInput } from "@/types/auth.types";
+import { emailRegex } from "@/constants/regex";
 
 const RegisterPage: FC = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -17,24 +20,65 @@ const RegisterPage: FC = () => {
   const handlePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
+
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IAuthInput>({ mode: "onChange" });
+
+  const onSubmit: SubmitHandler<IAuthInput> = (data) => {
+    console.log(data);
+    reset();
+  };
   return (
-    <section className="register-page auth">
+    <section className="login-page auth">
       <div className="container">
         <h1 className="title auth__title">Registration</h1>
-        <div className="auth__wrapper">
+        <form onSubmit={handleSubmit(onSubmit)} className="auth__wrapper">
           <label className="auth__label">
             <span className="auth__label-span">Email</span>
-            <input type="text" className="auth__input" placeholder="Email..." />
+            <input
+              {...register("email", {
+                required: {
+                  value: true,
+                  message: "Email is required!",
+                },
+                pattern: {
+                  value: emailRegex,
+                  message: "Email must be valid",
+                },
+              })}
+              type="text"
+              className="auth__input"
+              placeholder="Email..."
+            />
+            {errors.email && (
+              <div className="auth__label-error">{errors.email.message}</div>
+            )}
           </label>
+
           <label className="auth__label">
             <span className="auth__label-span">Password</span>
             <input
+              {...register("password", {
+                required: {
+                  value: true,
+                  message: "Password is required!",
+                },
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters!",
+                },
+              })}
               type={isPasswordVisible ? "text" : "password"}
               className="auth__input"
               placeholder="Password..."
             />
             {isPasswordVisible ? (
               <button
+                type="button"
                 className="auth__input-icon-btn"
                 onClick={handlePasswordVisibility}
               >
@@ -54,6 +98,7 @@ const RegisterPage: FC = () => {
               </button>
             ) : (
               <button
+                type="button"
                 className="auth__input-icon-btn"
                 onClick={handlePasswordVisibility}
               >
@@ -75,16 +120,20 @@ const RegisterPage: FC = () => {
                 </svg>
               </button>
             )}
+            {errors.password && (
+              <div className="auth__label-error">{errors.password.message}</div>
+            )}
           </label>
+
           <div className="auth__buttons">
-            <Button className="auth__button register-page__button">
-              Create Account
+            <Button type="submit" className="auth__button">
+              Login
             </Button>
-            <Link href="/auth/login" className="auth__link register-page__link">
-              I already have an account
+            <Link href="/auth/register" className="auth__link">
+              Create account
             </Link>
           </div>
-        </div>
+        </form>
       </div>
     </section>
   );

@@ -21,7 +21,7 @@
   }
   &__label {
     color: #fff;
-    margin-bottom: 32px;
+    margin-bottom: 36px;
     border: 2px solid $gray-dark;
     border-radius: 10px;
     position: relative;
@@ -38,6 +38,12 @@
       color: $gray-dark;
       z-index: 3;
     }
+  }
+  &__label-error {
+    position: absolute;
+    bottom: -24px;
+    color: $accent;
+    display: block;
   }
   &__input {
     position: relative;

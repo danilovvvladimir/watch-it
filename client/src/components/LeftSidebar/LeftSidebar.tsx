@@ -19,7 +19,7 @@ import { IGenre } from "@/types/movies.types";
 import GenresMenuList from "../MenuList/GenresMenuList/GenresMenuList";
 
 const LeftSidebar: FC = () => {
-  const isAuth = true;
+  const isAuth = false;
   const isAdmin = true;
 
   const generalList = isAuth
