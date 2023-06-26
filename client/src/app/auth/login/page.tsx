@@ -14,6 +14,8 @@ import { IAuthInput } from "@/types/auth.types";
 import { emailRegex } from "@/constants/regex";
 import { login } from "@/store/user/user.actions";
 import { AppDispatch } from "@/store/store";
+import { createNotify, notifyMode } from "@/utils/createNotify";
+import axios from "axios";
 
 const LoginPage: FC = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -30,11 +32,29 @@ const LoginPage: FC = () => {
     formState: { errors },
   } = useForm<IAuthInput>({ mode: "onChange" });
 
-  const onSubmit: SubmitHandler<IAuthInput> = (data) => {
+  const onSubmit: SubmitHandler<IAuthInput> = async (data) => {
     // console.log(data);
-    dispatch(login(data));
-    reset();
+    try {
+      const response = await dispatch(login(data));
+
+      if (login.rejected.match(response)) {
+        if (axios.isAxiosError(response.payload)) {
+          createNotify(
+            response.payload.response?.data?.message,
+            notifyMode.ERROR
+          );
+        }
+      } else {
+        reset();
+        createNotify("You are successfully authorized!");
+      }
+    } catch (error) {
+      console.log(error);
+
+      createNotify("Something went wrong...", notifyMode.ERROR);
+    }
   };
+
   return (
     <section className="login-page auth">
       <div className="container">

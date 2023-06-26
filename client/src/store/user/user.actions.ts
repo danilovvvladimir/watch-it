@@ -7,8 +7,11 @@ export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
   async ({ email, password }, thunkApi) => {
     try {
       const response = await AuthService.register(email, password);
+      console.log("RESPONSE:", response);
+
       return response.data;
     } catch (error) {
+      console.log("ОЩИБКАААА");
       return thunkApi.rejectWithValue(error);
     }
   }

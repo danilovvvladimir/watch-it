@@ -15,8 +15,12 @@ import { IAuthInput } from "@/types/auth.types";
 import { emailRegex } from "@/constants/regex";
 import { AppDispatch, RootState } from "@/store/store";
 import { login, register as registerUser } from "@/store/user/user.actions";
+import { createNotify, notifyMode } from "@/utils/createNotify";
+import { AxiosError } from "axios";
+import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
 const RegisterPage: FC = () => {
+  // useAuthRedirect();
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   // const {isLoading, user} = useSelector((state: RootState) => state.user);
@@ -32,10 +36,24 @@ const RegisterPage: FC = () => {
     formState: { errors },
   } = useForm<IAuthInput>({ mode: "onChange" });
 
-  const onSubmit: SubmitHandler<IAuthInput> = (data) => {
+  const onSubmit: SubmitHandler<IAuthInput> = async (data) => {
     // console.log(data);
-    dispatch(registerUser(data));
-    reset();
+    try {
+      const response = await dispatch(registerUser(data));
+
+      if (response.meta.requestStatus === "rejected") {
+        createNotify(
+          "User with this email is already existing!",
+          notifyMode.ERROR
+        );
+      } else {
+        createNotify("You are successfully registered!");
+      }
+
+      reset();
+    } catch (error) {
+      createNotify("Something went wrong...", notifyMode.ERROR);
+    }
   };
   return (
     <section className="login-page auth">
@@ -132,10 +150,10 @@ const RegisterPage: FC = () => {
 
           <div className="auth__buttons">
             <Button type="submit" className="auth__button">
-              Login
+              Register
             </Button>
             <Link href="/auth/register" className="auth__link">
-              Create account
+              I already have an account
             </Link>
           </div>
         </form>
