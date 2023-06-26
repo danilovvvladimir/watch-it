@@ -1,3 +1,5 @@
+"use client";
+
 // ==> Libs imports <===
 import { FC } from "react";
 
@@ -17,9 +19,14 @@ import {
 import { API_URL } from "@/configs/api.config";
 import { IGenre } from "@/types/movies.types";
 import GenresMenuList from "../MenuList/GenresMenuList/GenresMenuList";
+import { checkIsAuth } from "@/store/user/user.slice";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { LoadingStatus } from "@/store/user/user.interface";
 
 const LeftSidebar: FC = () => {
-  const isAuth = false;
+  const { isLoading, user } = useSelector((state: RootState) => state.user);
+  const isAuth = useSelector(checkIsAuth);
   const isAdmin = true;
 
   const generalList = isAuth
@@ -34,7 +41,12 @@ const LeftSidebar: FC = () => {
       <nav className="menu">
         <MenuList items={NavigationListItems} title="Menu" />
         <GenresMenuList />
-        <MenuList items={generalList} title="General" />
+        {isLoading === LoadingStatus.LOADING ? (
+          <div>Loading...</div>
+        ) : (
+          // <MenuList items={GeneralListItems} title="General" />
+          <MenuList items={generalList} title="General" />
+        )}
       </nav>
     </aside>
   );

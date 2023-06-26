@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IInitialState, LoadingStatus } from "./user.interface";
 import { getLocalStorage } from "@/utils/getLocalStorage";
 import { checkAuth, login, logout, register } from "./user.actions";
+import { RootState } from "../store";
 
 const initialState: IInitialState = {
   isLoading: LoadingStatus.SUCCESS,
@@ -50,3 +51,4 @@ export const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+export const checkIsAuth = (state: RootState) => Boolean(state.user.user);
