@@ -6,5 +6,5 @@ export class UpdateUserDTO {
 
   password?: string;
 
-  isAdmin?: boolean;
+  username?: string;
 }

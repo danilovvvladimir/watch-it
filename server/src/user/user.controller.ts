@@ -32,30 +32,30 @@ export class UserController {
     return this.userService.findById(_id);
   }
 
-  // @UsePipes(new ValidationPipe())
-  // @Put("profile")
-  // @HttpCode(200)
-  // @UseGuards(AccessTokenGuard)
-  // async updateProfile(@GetUser("_id") _id: string, @Body() dto: UpdateUserDTO) {
-  //   return this.userService.updateUser(_id, dto);
-  // }
+  @UsePipes(new ValidationPipe())
+  @Put("profile")
+  @HttpCode(200)
+  @UseGuards(AccessTokenGuard)
+  async updateProfile(@GetUser("_id") _id: string, @Body() dto: UpdateUserDTO) {
+    return this.userService.updateUser(_id, dto);
+  }
 
-  // @Get("profile/favorites")
-  // @UseGuards(AccessTokenGuard)
-  // async getFavorites(@GetUser("_id") _id: string) {
-  //   return this.userService.getFavoriteMovies(_id);
-  // }
+  @Get("profile/favorites")
+  @UseGuards(AccessTokenGuard)
+  async getFavorites(@GetUser("_id") _id: string) {
+    return this.userService.getFavoriteMovies(_id);
+  }
 
-  // @UsePipes(new ValidationPipe())
-  // @Put("profile/favorites")
-  // @HttpCode(200)
-  // @UseGuards(AccessTokenGuard)
-  // async toggleFavorite(
-  //   @Body("movieId", IdValidationPipe) movieId: string,
-  //   @GetUser() user: User,
-  // ) {
-  //   return this.userService.toggleFavorite(movieId, user);
-  // }
+  @UsePipes(new ValidationPipe())
+  @Put("profile/favorites")
+  @HttpCode(200)
+  @UseGuards(AccessTokenGuard)
+  async toggleFavorite(
+    @Body("movieId", IdValidationPipe) movieId: string,
+    @GetUser() user: User,
+  ) {
+    return this.userService.toggleFavorite(movieId, user);
+  }
 
   @Get()
   @UseGuards(AccessTokenGuard, RolesGuard)
@@ -78,17 +78,17 @@ export class UserController {
     return this.userService.findById(id);
   }
 
-  // @UsePipes(new ValidationPipe())
-  // @Put(":id")
-  // @HttpCode(200)
-  // @UseGuards(AccessTokenGuard)
-  // @Roles(Role.ADMIN, Role.SUPERADMIN)
-  // async updateUserProfile(
-  //   @Param("id", IdValidationPipe) id: string,
-  //   @Body() dto: UpdateUserDTO,
-  // ) {
-  //   return this.userService.updateUser(id, dto);
-  // }
+  @UsePipes(new ValidationPipe())
+  @Put(":id")
+  @HttpCode(200)
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
+  async updateUserProfile(
+    @Param("id", IdValidationPipe) id: string,
+    @Body() dto: UpdateUserDTO,
+  ) {
+    return this.userService.updateUser(id, dto);
+  }
 
   @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
