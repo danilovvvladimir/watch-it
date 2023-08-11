@@ -8,7 +8,7 @@ import {
   USER_EMAIL_TAKEN_MESSAGE,
   USER_NOT_FOUND_MESSAGE,
   USER_UPDATED_MESSAGE,
-} from "./constants/user.constants";
+} from "../constants/user";
 
 @Injectable()
 export class UserService {

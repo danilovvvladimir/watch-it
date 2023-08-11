@@ -16,7 +16,7 @@ import {
   AUTH_USER_ALREADY_EXISTS_MESSAGE,
   AUTH_USER_INVALID_PASSWORD_MESSAGE,
   AUTH_USER_NOT_FOUND_MESSAGE,
-} from "./constants/auth.constants";
+} from "../constants/auth";
 import { ConfigService } from "@nestjs/config";
 
 @Injectable()

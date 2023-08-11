@@ -3,7 +3,7 @@ import { Movie } from "./movie.schema";
 import {
   MOVIE_DELETED_MESSAGE,
   MOVIE_NOT_FOUND_MESSAGE,
-} from "./constants/movie.constants";
+} from "../constants/movie";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, Types } from "mongoose";
 import { CreateMovieDTO } from "./dto/create-movie.dto";

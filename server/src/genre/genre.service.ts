@@ -3,7 +3,7 @@ import { Genre } from "./genre.schema";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { UpdateGenreDTO } from "./dto/update-genre.dto";
-import { GENRE_NOT_FOUND_MESSAGE } from "./constants/genre.constants";
+import { GENRE_NOT_FOUND_MESSAGE } from "../constants/genre";
 import { MovieService } from "src/movie/movie.service";
 import { ICollection } from "./genre.interface";
 

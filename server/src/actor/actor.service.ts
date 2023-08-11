@@ -3,7 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { Actor } from "./actor.schema";
 import { ActorDTO } from "./dto/actor.dto";
-import { ACTOR_NOT_FOUND_MESSAGE } from "./constants/actor.constants";
+import { ACTOR_NOT_FOUND_MESSAGE } from "src/constants/actor";
 
 @Injectable()
 export class ActorService {

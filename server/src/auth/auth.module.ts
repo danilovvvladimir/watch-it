@@ -8,16 +8,19 @@ import { JwtModule } from "@nestjs/jwt";
 import { getJWTConfig } from "config/jwt.config";
 import { AccessTokenStrategy } from "./strategies/accessToken.strategy";
 import { RefreshTokenStrategy } from "./strategies/refreshToken.strategy";
+import { PassportModule } from "@nestjs/passport";
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    // JwtModule.registerAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: getJWTConfig,
+    // }),
+    JwtModule.register({}),
     ConfigModule,
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: getJWTConfig,
-    }),
+    PassportModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, AccessTokenStrategy, RefreshTokenStrategy],
