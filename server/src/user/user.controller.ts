@@ -20,6 +20,7 @@ import { AccessTokenGuard } from "src/auth/guard/accessToken.guard";
 import { Roles } from "./decorators/role.decorator";
 import { Role } from "./user.interface";
 import { GetUser } from "./decorators/user.decorator";
+import { RolesGuard } from "src/auth/guard/roles.guard";
 
 @Controller("users")
 export class UserController {
@@ -31,27 +32,6 @@ export class UserController {
     return this.userService.findById(_id);
   }
 
-  @Get()
-  @UseGuards(AccessTokenGuard)
-  @Roles(Role.ADMIN, Role.SUPERADMIN)
-  async getAllUsers(@Query("searchTerm") searchTerm?: string) {
-    return this.userService.getAllUsers(searchTerm);
-  }
-
-  @Get("count")
-  @UseGuards(AccessTokenGuard)
-  @Roles(Role.ADMIN, Role.SUPERADMIN)
-  async accamulateUsers() {
-    return this.userService.getAllUsersCount();
-  }
-
-  @Get(":id")
-  @UseGuards(AccessTokenGuard)
-  @Roles(Role.ADMIN, Role.SUPERADMIN)
-  async getUserProfile(@Param("id", IdValidationPipe) id: string) {
-    return this.userService.findById(id);
-  }
-
   // @UsePipes(new ValidationPipe())
   // @Put("profile")
   // @HttpCode(200)
@@ -59,26 +39,6 @@ export class UserController {
   // async updateProfile(@GetUser("_id") _id: string, @Body() dto: UpdateUserDTO) {
   //   return this.userService.updateUser(_id, dto);
   // }
-
-  // @UsePipes(new ValidationPipe())
-  // @Put(":id")
-  // @HttpCode(200)
-  // @UseGuards(AccessTokenGuard)
-  // @Roles(Role.ADMIN, Role.SUPERADMIN)
-  // async updateUserProfile(
-  //   @Param("id", IdValidationPipe) id: string,
-  //   @Body() dto: UpdateUserDTO,
-  // ) {
-  //   return this.userService.updateUser(id, dto);
-  // }
-
-  @Delete(":id")
-  @HttpCode(200)
-  @UseGuards(AccessTokenGuard)
-  @Roles(Role.ADMIN, Role.SUPERADMIN)
-  async deleteUserProfile(@Param("id", IdValidationPipe) id: string) {
-    return this.userService.deleteUser(id);
-  }
 
   // @Get("profile/favorites")
   // @UseGuards(AccessTokenGuard)
@@ -96,4 +56,45 @@ export class UserController {
   // ) {
   //   return this.userService.toggleFavorite(movieId, user);
   // }
+
+  @Get()
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
+  async getAllUsers(@Query("searchTerm") searchTerm?: string) {
+    return this.userService.getAllUsers(searchTerm);
+  }
+
+  @Get("count")
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
+  async accamulateUsers() {
+    return this.userService.getAllUsersCount();
+  }
+
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
+  @Get(":id")
+  async getUserProfile(@Param("id", IdValidationPipe) id: string) {
+    return this.userService.findById(id);
+  }
+
+  // @UsePipes(new ValidationPipe())
+  // @Put(":id")
+  // @HttpCode(200)
+  // @UseGuards(AccessTokenGuard)
+  // @Roles(Role.ADMIN, Role.SUPERADMIN)
+  // async updateUserProfile(
+  //   @Param("id", IdValidationPipe) id: string,
+  //   @Body() dto: UpdateUserDTO,
+  // ) {
+  //   return this.userService.updateUser(id, dto);
+  // }
+
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
+  @Delete(":id")
+  @HttpCode(200)
+  async deleteUserProfile(@Param("id", IdValidationPipe) id: string) {
+    return this.userService.deleteUser(id);
+  }
 }

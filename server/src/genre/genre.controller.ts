@@ -17,6 +17,7 @@ import { UpdateGenreDTO } from "./dto/update-genre.dto";
 import { Role } from "src/user/user.interface";
 import { Roles } from "src/user/decorators/role.decorator";
 import { AccessTokenGuard } from "src/auth/guard/accessToken.guard";
+import { RolesGuard } from "src/auth/guard/roles.guard";
 
 @Controller("genres")
 export class GenreController {
@@ -38,7 +39,7 @@ export class GenreController {
   }
 
   @Get(":id")
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
   async getGenre(@Param("id", IdValidationPipe) id: string) {
     return this.genreService.findById(id);
@@ -47,7 +48,7 @@ export class GenreController {
   @UsePipes(new ValidationPipe())
   @Post()
   @HttpCode(200)
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
   async createGenre() {
     return this.genreService.createGenre();
@@ -56,7 +57,7 @@ export class GenreController {
   @UsePipes(new ValidationPipe())
   @Put(":id")
   @HttpCode(200)
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
   async updateGenre(@Param("id") id: string, @Body() dto: UpdateGenreDTO) {
     return this.genreService.updateGenre(id, dto);
@@ -64,7 +65,7 @@ export class GenreController {
 
   @Delete(":id")
   @HttpCode(200)
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
   async deleteGenre(@Param("id", IdValidationPipe) id: string) {
     return this.genreService.deleteGenre(id);

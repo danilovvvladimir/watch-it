@@ -12,6 +12,7 @@ import { FileService } from "./file.service";
 import { AccessTokenGuard } from "src/auth/guard/accessToken.guard";
 import { Roles } from "src/user/decorators/role.decorator";
 import { Role } from "src/user/user.interface";
+import { RolesGuard } from "src/auth/guard/roles.guard";
 
 @Controller("files")
 export class FileController {
@@ -19,7 +20,7 @@ export class FileController {
 
   @Post()
   @HttpCode(200)
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
   @UseInterceptors(FileInterceptor("image"))
   async uploadFile(

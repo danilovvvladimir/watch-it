@@ -22,8 +22,8 @@ export class RatingController {
 
   @UsePipes(new ValidationPipe())
   @Post("set-rating")
-  @HttpCode(200)
   @UseGuards(AccessTokenGuard)
+  @HttpCode(200)
   async setRating(
     @GetUser("_id") userId: Types.ObjectId,
     @Body()

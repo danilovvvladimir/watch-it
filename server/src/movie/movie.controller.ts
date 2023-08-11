@@ -20,6 +20,7 @@ import { CreateMovieDTO } from "./dto/create-movie.dto";
 import { Roles } from "src/user/decorators/role.decorator";
 import { Role } from "src/user/user.interface";
 import { AccessTokenGuard } from "src/auth/guard/accessToken.guard";
+import { RolesGuard } from "src/auth/guard/roles.guard";
 
 @Controller("movies")
 export class MovieController {
@@ -52,13 +53,6 @@ export class MovieController {
     return this.movieService.getAll(searchTerm);
   }
 
-  @Get("/most-popular")
-  @UseGuards(AccessTokenGuard)
-  @Roles(Role.ADMIN, Role.SUPERADMIN)
-  async getMostPopular() {
-    return this.movieService.getMostPopular();
-  }
-
   @UsePipes(new ValidationPipe())
   @Post("/update-count-opened")
   @HttpCode(200)
@@ -66,8 +60,15 @@ export class MovieController {
     return this.movieService.updateCountOpened(slug);
   }
 
+  @Get("/most-popular")
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
+  async getMostPopular() {
+    return this.movieService.getMostPopular();
+  }
+
   @Get(":id")
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
   async getById(@Param("id", IdValidationPipe) id: string) {
     return this.movieService.findById(id);
@@ -75,7 +76,7 @@ export class MovieController {
 
   @Post()
   @HttpCode(200)
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
   async createMovie() {
     return this.movieService.createMovie();
@@ -84,7 +85,7 @@ export class MovieController {
   @UsePipes(new ValidationPipe())
   @Put(":id")
   @HttpCode(200)
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
   async updateMovie(
     @Param("id", IdValidationPipe) id: string,
@@ -94,7 +95,7 @@ export class MovieController {
   }
 
   @Delete(":id")
-  @UseGuards(AccessTokenGuard)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPERADMIN)
   async deleteMovie(@Param("id", IdValidationPipe) id: string) {
     return this.movieService.deleteMovie(id);
