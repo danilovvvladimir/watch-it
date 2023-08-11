@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 // ==> Libs imports <===
 import React, { FC } from "react";
@@ -13,56 +13,23 @@ import { transformCodeToSvg } from "@/utils/transformCodeToSvg";
 import { defaultGenreIcon } from "@/constants/constants";
 import { API_URL } from "@/configs/api.config";
 import SkeletonLoader from "./SkeletonLoader/SkeletonLoader";
+import MenuList from "../MenuList";
+import { transformGenreToMenuItem } from "@/utils/transformToMenuItem";
 
 const getPopularGenres = async () => {
-  const response = await fetch("http://localhost:4444/api/genres");
+  const response = await fetch(API_URL + "/genres");
+  const data: IGenre[] = await response.json();
 
-  return response.json();
+  return data.slice(0, 5);
 };
 
-const GenresMenuList: FC = () => {
-  const [popularGenres, setPopularGenres] = React.useState<IGenre[]>([]);
-  const pathname = usePathname();
-
-  React.useEffect(() => {
-    const fetchSomeGenres = async () => {
-      const genres: IGenre[] = await getPopularGenres();
-
-      setPopularGenres(genres.slice(0, 4));
-    };
-
-    fetchSomeGenres();
-  }, []);
-
-  return (
-    <div className="menu__item">
-      <h4 className="menu__item-title">Popular Genres</h4>
-      <ul className="menu__list">
-        {popularGenres.length ? (
-          popularGenres.map((genre) => {
-            const transformedIcon = transformCodeToSvg(genre.icon);
-            const genreIcon = transformedIcon
-              ? transformedIcon
-              : defaultGenreIcon;
-
-            const genreUrl = `/genres/${genre.slug}`;
-            return (
-              <MenuItem
-                key={genre._id}
-                id={genre._id}
-                title={genre.name}
-                url={genreUrl}
-                icon={genreIcon}
-                isActive={pathname === genreUrl}
-              />
-            );
-          })
-        ) : (
-          <SkeletonLoader count={4} />
-        )}
-      </ul>
-    </div>
+const GenresMenuList: FC = async () => {
+  const popularGenres: IGenre[] = await getPopularGenres();
+  const genresListItems = popularGenres.map((genre) =>
+    transformGenreToMenuItem(genre)
   );
+
+  return <MenuList items={genresListItems} title="Popular Genres" />;
 };
 
 export default GenresMenuList;

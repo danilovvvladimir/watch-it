@@ -63,11 +63,8 @@ const HomePage: FC = async () => {
       <div className="container">
         <h1 className="title home-page__title">Watch movies online</h1>
         <Slider slides={Slides} />
-        {/* List - films*/}
         <CardList cards={moviesCards} />
-        {/* List - actors*/}
         <CardList cards={actorsCards} />
-        {/* List - genres*/}
         <CardList cards={genreCollectionCards} />
       </div>
     </section>

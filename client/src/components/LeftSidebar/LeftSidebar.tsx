@@ -41,12 +41,13 @@ const LeftSidebar: FC = () => {
       <nav className="menu">
         <MenuList items={NavigationListItems} title="Menu" />
         <GenresMenuList />
-        {isLoading === LoadingStatus.LOADING ? (
+        <MenuList items={GeneralListItems} title="General" />
+        {/* {isLoading === LoadingStatus.LOADING ? (
           <div>Loading...</div>
         ) : (
-          // <MenuList items={GeneralListItems} title="General" />
-          <MenuList items={generalList} title="General" />
-        )}
+          <MenuList items={GeneralListItems} title="General" />
+          // <MenuList items={generalList} title="General" />
+        )} */}
       </nav>
     </aside>
   );

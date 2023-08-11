@@ -10,6 +10,7 @@ export const transformMovieToCard = (movie: IMovie): ICard => {
     hoverTitle: movie.title,
   };
 };
+
 export const transformActorToCard = (actor: IActor): ICard => {
   return {
     id: actor._id,
@@ -19,6 +20,7 @@ export const transformActorToCard = (actor: IActor): ICard => {
     hoverTitle: actor.name,
   };
 };
+
 export const transformGenreCollectionToCard = (
   collection: ICollection
 ): ICard => {
