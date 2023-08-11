@@ -16,35 +16,37 @@ export class UserService {
 
   async findById(_id: string) {
     const user = await this.userModel.findById(_id);
+
     if (!user) {
       throw new NotFoundException(USER_NOT_FOUND_MESSAGE);
     }
+
     return user;
   }
 
-  async updateUser(_id: string, dto: UpdateUserDTO) {
-    const user = await this.findById(_id);
-    const isSameUser = await this.userModel.findOne({ email: dto.email });
+  // async updateUser(_id: string, dto: UpdateUserDTO) {
+  //   const user = await this.findById(_id);
+  //   const isSameUser = await this.userModel.findOne({ email: dto.email });
 
-    if (isSameUser && String(_id) !== String(isSameUser._id)) {
-      throw new NotFoundException(USER_EMAIL_TAKEN_MESSAGE);
-    }
+  //   if (isSameUser && String(_id) !== String(isSameUser._id)) {
+  //     throw new NotFoundException(USER_EMAIL_TAKEN_MESSAGE);
+  //   }
 
-    if (dto.password) {
-      const salt = await genSalt(10);
-      user.password = await hash(dto.password, salt);
-    }
+  //   if (dto.password) {
+  //     const salt = await genSalt(10);
+  //     user.password = await hash(dto.password, salt);
+  //   }
 
-    user.email = dto.email;
+  //   user.email = dto.email;
 
-    if (dto.isAdmin || !dto.isAdmin) {
-      user.isAdmin = dto.isAdmin;
-    }
+  //   if (dto.isAdmin || !dto.isAdmin) {
+  //     user.isAdmin = dto.isAdmin;
+  //   }
 
-    await user.save();
+  //   await user.save();
 
-    return { message: USER_UPDATED_MESSAGE };
-  }
+  //   return { message: USER_UPDATED_MESSAGE };
+  // }
 
   async getAllUsersCount() {
     return this.userModel.find().count().exec();
@@ -76,28 +78,28 @@ export class UserService {
     return this.userModel.findByIdAndDelete(id).exec();
   }
 
-  async toggleFavorite(movieId: string, user: User) {
-    const { favoriteMovies, _id } = user;
+  // async toggleFavorite(movieId: string, user: User) {
+  //   const { favoriteMovies, _id } = user;
 
-    await this.userModel.findByIdAndUpdate(_id, {
-      favoriteMovies: favoriteMovies.includes(new Types.ObjectId(movieId))
-        ? favoriteMovies.filter((id) => String(id) !== String(movieId))
-        : [...favoriteMovies, movieId],
-    });
-  }
+  //   await this.userModel.findByIdAndUpdate(_id, {
+  //     favoriteMovies: favoriteMovies.includes(new Types.ObjectId(movieId))
+  //       ? favoriteMovies.filter((id) => String(id) !== String(movieId))
+  //       : [...favoriteMovies, movieId],
+  //   });
+  // }
 
-  async getFavoriteMovies(_id: string) {
-    return this.userModel
-      .findById(_id, "favoriteMovies")
-      .populate({
-        path: "favoriteMovies",
-        populate: {
-          path: "genres",
-        },
-      })
-      .exec()
-      .then((data) => {
-        return data.favoriteMovies;
-      });
-  }
+  // async getFavoriteMovies(_id: string) {
+  //   return this.userModel
+  //     .findById(_id, "favoriteMovies")
+  //     .populate({
+  //       path: "favoriteMovies",
+  //       populate: {
+  //         path: "genres",
+  //       },
+  //     })
+  //     .exec()
+  //     .then((data) => {
+  //       return data.favoriteMovies;
+  //     });
+  // }
 }

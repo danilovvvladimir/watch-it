@@ -5,15 +5,16 @@ import {
   HttpCode,
   Param,
   Post,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from "@nestjs/common";
 import { Types } from "mongoose";
-import { Auth } from "src/auth/decorators/auth.decorator";
 import { IdValidationPipe } from "src/pipes/id.validation.pipe";
 import { RatingService } from "./rating.service";
-import { UserD } from "src/user/decorators/user.decorator";
 import { SetRatingDTO } from "./dto/set-rating.dto";
+import { GetUser } from "src/user/decorators/user.decorator";
+import { AccessTokenGuard } from "src/auth/guard/accessToken.guard";
 
 @Controller("ratings")
 export class RatingController {
@@ -22,9 +23,9 @@ export class RatingController {
   @UsePipes(new ValidationPipe())
   @Post("set-rating")
   @HttpCode(200)
-  @Auth()
+  @UseGuards(AccessTokenGuard)
   async setRating(
-    @UserD("_id") userId: Types.ObjectId,
+    @GetUser("_id") userId: Types.ObjectId,
     @Body()
     dto: SetRatingDTO,
   ) {
@@ -32,10 +33,10 @@ export class RatingController {
   }
 
   @Get("/:movieId")
-  @Auth()
+  @UseGuards(AccessTokenGuard)
   async getMovieValueByUser(
     @Param("movieId", IdValidationPipe) movieId: Types.ObjectId,
-    @UserD("_id") userId: Types.ObjectId,
+    @GetUser("_id") userId: Types.ObjectId,
   ) {
     return this.ratingService.getMovieValueByUser(movieId, userId);
   }

@@ -6,7 +6,8 @@ import { User, UserSchema } from "src/user/user.schema";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import { getJWTConfig } from "config/jwt.config";
-import { JwtStrategy } from "./strategies/jwt.strategy";
+import { AccessTokenStrategy } from "./strategies/accessToken.strategy";
+import { RefreshTokenStrategy } from "./strategies/refreshToken.strategy";
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { JwtStrategy } from "./strategies/jwt.strategy";
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, AccessTokenStrategy, RefreshTokenStrategy],
 })
 export class AuthModule {}

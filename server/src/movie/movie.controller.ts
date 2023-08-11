@@ -9,14 +9,17 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from "@nestjs/common";
 import { MovieService } from "./movie.service";
 import { Types } from "mongoose";
 import { IdValidationPipe } from "src/pipes/id.validation.pipe";
-import { Auth } from "src/auth/decorators/auth.decorator";
 import { CreateMovieDTO } from "./dto/create-movie.dto";
+import { Roles } from "src/user/decorators/role.decorator";
+import { Role } from "src/user/user.interface";
+import { AccessTokenGuard } from "src/auth/guard/accessToken.guard";
 
 @Controller("movies")
 export class MovieController {
@@ -50,7 +53,8 @@ export class MovieController {
   }
 
   @Get("/most-popular")
-  @Auth("admin")
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
   async getMostPopular() {
     return this.movieService.getMostPopular();
   }
@@ -63,14 +67,16 @@ export class MovieController {
   }
 
   @Get(":id")
-  @Auth("admin")
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
   async getById(@Param("id", IdValidationPipe) id: string) {
     return this.movieService.findById(id);
   }
 
   @Post()
   @HttpCode(200)
-  @Auth("admin")
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
   async createMovie() {
     return this.movieService.createMovie();
   }
@@ -78,7 +84,8 @@ export class MovieController {
   @UsePipes(new ValidationPipe())
   @Put(":id")
   @HttpCode(200)
-  @Auth("admin")
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
   async updateMovie(
     @Param("id", IdValidationPipe) id: string,
     @Body() dto: CreateMovieDTO,
@@ -87,7 +94,8 @@ export class MovieController {
   }
 
   @Delete(":id")
-  @Auth("admin")
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
   async deleteMovie(@Param("id", IdValidationPipe) id: string) {
     return this.movieService.deleteMovie(id);
   }

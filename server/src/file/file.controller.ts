@@ -4,11 +4,14 @@ import {
   Post,
   Query,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { Auth } from "src/auth/decorators/auth.decorator";
 import { FileService } from "./file.service";
+import { AccessTokenGuard } from "src/auth/guard/accessToken.guard";
+import { Roles } from "src/user/decorators/role.decorator";
+import { Role } from "src/user/user.interface";
 
 @Controller("files")
 export class FileController {
@@ -16,7 +19,8 @@ export class FileController {
 
   @Post()
   @HttpCode(200)
-  @Auth("admin")
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
   @UseInterceptors(FileInterceptor("image"))
   async uploadFile(
     @UploadedFile() file: Express.Multer.File,

@@ -7,13 +7,16 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from "@nestjs/common";
 import { GenreService } from "./genre.service";
-import { Auth } from "src/auth/decorators/auth.decorator";
 import { IdValidationPipe } from "src/pipes/id.validation.pipe";
 import { UpdateGenreDTO } from "./dto/update-genre.dto";
+import { Role } from "src/user/user.interface";
+import { Roles } from "src/user/decorators/role.decorator";
+import { AccessTokenGuard } from "src/auth/guard/accessToken.guard";
 
 @Controller("genres")
 export class GenreController {
@@ -35,7 +38,8 @@ export class GenreController {
   }
 
   @Get(":id")
-  @Auth("admin")
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
   async getGenre(@Param("id", IdValidationPipe) id: string) {
     return this.genreService.findById(id);
   }
@@ -43,7 +47,8 @@ export class GenreController {
   @UsePipes(new ValidationPipe())
   @Post()
   @HttpCode(200)
-  @Auth("admin")
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
   async createGenre() {
     return this.genreService.createGenre();
   }
@@ -51,14 +56,16 @@ export class GenreController {
   @UsePipes(new ValidationPipe())
   @Put(":id")
   @HttpCode(200)
-  @Auth("admin")
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
   async updateGenre(@Param("id") id: string, @Body() dto: UpdateGenreDTO) {
     return this.genreService.updateGenre(id, dto);
   }
 
   @Delete(":id")
   @HttpCode(200)
-  @Auth("admin")
+  @UseGuards(AccessTokenGuard)
+  @Roles(Role.ADMIN, Role.SUPERADMIN)
   async deleteGenre(@Param("id", IdValidationPipe) id: string) {
     return this.genreService.deleteGenre(id);
   }
