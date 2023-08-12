@@ -9,8 +9,8 @@ import { cartoonsMovies, horrorMovies } from "@/constants/constants";
 import MovieMedium from "@/components/Movie/MovieMedium/MovieMedium";
 import { MovieService } from "@/services/movie.service";
 import { IGenre, IMovie } from "@/types/movies.types";
-import { GenreService } from "@/services/genre.service";
 import capitalizeString from "@/utils/capitalizeString";
+import GenreService from "@/services/genre/genre.service";
 
 interface SingleGenrePageProps {
   params: {
@@ -30,9 +30,10 @@ const SingleGenrePage: FC<SingleGenrePageProps> = async ({
   params: { slug },
 }) => {
   let genreMovies: IMovie[];
+  const genreService = new GenreService();
 
   try {
-    const responseGenre = await GenreService.getGenreIdBySlug(slug);
+    const responseGenre = await genreService.getGenreIdBySlug(slug);
     const genreId = responseGenre.data._id;
     if (!genreId) {
       notFound();

@@ -12,7 +12,7 @@ import { IMovie } from "@/types/movies.types";
 import Link from "next/link";
 import Button from "@/components/UI/Button/Button";
 import CardList from "@/components/CardList/CardList";
-import { GenreService } from "@/services/genre.service";
+import { GenreService } from "@/services/genre/genre.service";
 import { ICard, ICards } from "@/types/types";
 import { transformMovieToCard } from "@/utils/transformToCard";
 

@@ -4,8 +4,8 @@ import { FC } from "react";
 
 // ==> Other imports <===
 import "./Menu.scss";
-import LeftSidebar from "../LeftSidebar/LeftSidebar";
-import RightSidebar from "../RightSidebar/RightSidebar";
+import LeftSidebar from "./LeftSidebar/LeftSidebar";
+import RightSidebar from "./RightSidebar/RightSidebar";
 
 const Menu: FC = () => {
   return (

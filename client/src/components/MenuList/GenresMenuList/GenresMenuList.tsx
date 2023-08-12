@@ -1,35 +1,39 @@
-// "use client";
+"use client";
 
-// ==> Libs imports <===
-import React, { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
+import React, { FC, useState, useEffect } from "react";
 import "../MenuList.scss";
-import { usePathname, useRouter } from "next/navigation";
 import { IGenre } from "@/types/movies.types";
-import MenuItem from "@/components/MenuItem/MenuItem";
-import { transformCodeToSvg } from "@/utils/transformCodeToSvg";
-import { defaultGenreIcon } from "@/constants/constants";
-import { API_URL } from "@/configs/api.config";
-import SkeletonLoader from "./SkeletonLoader/SkeletonLoader";
 import MenuList from "../MenuList";
 import { transformGenreToMenuItem } from "@/utils/transformToMenuItem";
+import GenreService from "@/services/genre/genre.service";
+import usePopularGenres from "@/hooks/usePopularGenres";
+import { NavigationListItems } from "@/constants/constants";
 
-const getPopularGenres = async () => {
-  const response = await fetch(API_URL + "/genres");
-  const data: IGenre[] = await response.json();
+const GenresMenuList: FC = () => {
+  console.log("GENRES RENDER");
+  const [popularGenres, setPopularGenres] = useState<IGenre[] | null>(null);
 
-  return data.slice(0, 5);
-};
+  useEffect(() => {
+    const fetchPopularGenres = async () => {
+      const genreService = new GenreService();
+      const genres = await genreService.getPopularGenres();
 
-const GenresMenuList: FC = async () => {
-  const popularGenres: IGenre[] = await getPopularGenres();
-  const genresListItems = popularGenres.map((genre) =>
-    transformGenreToMenuItem(genre)
+      setPopularGenres(genres.slice(0, 4));
+    };
+
+    fetchPopularGenres();
+  }, []);
+
+  if (popularGenres === null) {
+    return <div>Загрузка...</div>;
+  }
+
+  return (
+    <MenuList
+      items={popularGenres.map((genre) => transformGenreToMenuItem(genre))}
+      title="Popular Genres"
+    />
   );
-
-  return <MenuList items={genresListItems} title="Popular Genres" />;
 };
 
 export default GenresMenuList;

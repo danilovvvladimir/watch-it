@@ -1,14 +1,10 @@
 "use client";
 
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./MenuList.scss";
-import MenuItem from "../MenuItem/MenuItem";
 import { usePathname, useRouter } from "next/navigation";
 import { IMenuListItem } from "@/types/types";
+import MenuListItem from "./MenuListItem/MenuListItem";
 
 interface MenuListProps {
   items: IMenuListItem[];
@@ -23,7 +19,7 @@ const MenuList: FC<MenuListProps> = ({ items, title }) => {
       <h4 className="menu__item-title">{title}</h4>
       <ul className="menu__list">
         {items.map((item) => (
-          <MenuItem
+          <MenuListItem
             key={item.id}
             title={item.title}
             url={item.url}
