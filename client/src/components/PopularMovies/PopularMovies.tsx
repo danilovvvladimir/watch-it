@@ -3,7 +3,8 @@ import "./PopularMovies.scss";
 import MovieSmall, { MovieSmallProps } from "../Movie/MovieSmall/MovieSmall";
 import Button from "../UI/Button/Button";
 import { API_URL } from "@/configs/api.config";
-import { IMovie } from "@/types/movies.types";
+import { IMovie } from "@/types";
+import MovieService from "@/services/movie/movie.service";
 
 const getMovies = async () => {
   const response = await fetch(API_URL + "/movies");
@@ -12,7 +13,8 @@ const getMovies = async () => {
 };
 
 const PopularMovies: FC = async () => {
-  const items: IMovie[] = await getMovies();
+  const movieService = new MovieService();
+  const items: IMovie[] = await movieService.getAll();
 
   return (
     <div className="menu__item">

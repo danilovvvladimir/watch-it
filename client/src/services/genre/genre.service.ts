@@ -12,12 +12,8 @@ class GenreService {
     });
   }
 
-  async getPopular(limit: number = 4) {
-    const response = await this.axiosInstance.get<IGenre[]>("", {
-      params: {
-        limit,
-      },
-    });
+  async getPopular() {
+    const response = await this.axiosInstance.get<IGenre[]>("/");
 
     return response.data;
   }
