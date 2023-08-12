@@ -1,10 +1,6 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./Slide.scss";
-import { ISlide } from "@/types/types";
+import { ISlide } from "@/types/helpers.types";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../UI/Button/Button";

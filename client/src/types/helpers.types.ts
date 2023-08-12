@@ -51,3 +51,11 @@ export interface IGenreCollection {
   url: string;
   movies: IMovieMedium[];
 }
+
+export interface ICollection {
+  _id: string;
+  imageNormal: string;
+  imageMedium: string;
+  slug: string;
+  name: string;
+}

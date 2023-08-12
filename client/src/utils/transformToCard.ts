@@ -1,5 +1,5 @@
 import { IActor, ICollection, IGenre, IMovie } from "@/types/movies.types";
-import { ICard } from "@/types/types";
+import { ICard } from "@/types/helpers.types";
 
 export const transformMovieToCard = (movie: IMovie): ICard => {
   return {

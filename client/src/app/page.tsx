@@ -1,53 +1,58 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./HomePage.scss";
 import Slider from "@/components/Slider/Slider";
 import { Slides } from "@/constants/constants";
 import CardList from "@/components/CardList/CardList";
-import { IActor, ICollection, IGenre, IMovie } from "@/types/movies.types";
 import {
   transformActorToCard,
   transformGenreCollectionToCard,
   transformMovieToCard,
 } from "@/utils/transformToCard";
-import { ICard, ICards } from "@/types/types";
+import { IMovie, IActor } from "@/types";
+import { ICollection, ICards } from "@/types/helpers.types";
+import MovieService from "@/services/movie/movie.service";
+import GenreService from "@/services/genre/genre.service";
+import ActorService from "@/services/actor/actors.service";
 
-const getMovies = async () => {
-  const response = await fetch("http://localhost:4444/api/movies");
+// const getMovies = async () => {
+//   const response = await fetch("http://localhost:4444/api/movies");
 
-  return response.json();
-};
+//   return response.json();
+// };
 
-const getActors = async () => {
-  const response = await fetch("http://localhost:4444/api/actors");
+// const getActors = async () => {
+//   const response = await fetch("http://localhost:4444/api/actors");
 
-  return response.json();
-};
+//   return response.json();
+// };
 
-const getGenresCollection = async () => {
-  const response = await fetch("http://localhost:4444/api/genres/collections");
+// const getGenresCollection = async () => {
+//   const response = await fetch("http://localhost:4444/api/genres/collections");
 
-  return response.json();
-};
+//   return response.json();
+// };
 
 const HomePage: FC = async () => {
-  const movies: IMovie[] = await getMovies();
-  const actors: IActor[] = await getActors();
-  const genresCollection: ICollection[] = await getGenresCollection();
+  const movieService = new MovieService();
+  const actorService = new ActorService();
+  const genreService = new GenreService();
+
+  const movies: IMovie[] = await movieService.getAll();
+  const actors: IActor[] = await actorService.getAll();
+  const genresCollection: ICollection[] = await genreService.getCollection();
 
   const moviesCards: ICards = {
     cards: movies.slice(0, 5).map((movie) => transformMovieToCard(movie)),
     href: "/movies",
     title: "Trending Now",
   };
+
   const actorsCards: ICards = {
     cards: actors.slice(0, 5).map((actor) => transformActorToCard(actor)),
     href: "/actors",
     title: "Best Actors",
   };
+
   const genreCollectionCards: ICards = {
     cards: genresCollection
       .slice(0, 5)

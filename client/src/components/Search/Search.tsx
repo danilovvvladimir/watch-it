@@ -1,36 +1,33 @@
 "use client";
 
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
 import Input from "../UI/Input/Input";
 import SearchList from "./SearchList/SearchList";
-
-// ==> Other imports <===
 import "./Search.scss";
-import React from "react";
-import { MovieService } from "@/services/movie.service";
+import { useState, useEffect, useRef } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
+import MovieService from "@/services/movie/movie.service";
 
 const Search: FC = () => {
-  const [searchTerm, setSearchTerm] = React.useState<string>("");
-  const [isSearchListVisible, setIsSearchListVisible] =
-    React.useState<boolean>(true);
-  const [data, setData] = React.useState<any>("");
-  const searchRef = React.useRef<HTMLInputElement>(null);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [isSearchListVisible, setIsSearchListVisible] = useState<boolean>(true);
+  const [data, setData] = useState<any>("");
+  const searchRef = useRef<HTMLInputElement>(null);
   const debouncedSearch = useDebounce(searchTerm, 250);
 
-  React.useEffect(() => {
+  const movieService = new MovieService();
+
+  useEffect(() => {
     const getData = async () => {
-      const data = await MovieService.getMovies(searchTerm);
-      setData(data.data);
+      const data = await movieService.getAll(searchTerm);
+      setData(data);
     };
     if (searchTerm !== "") {
       getData();
     }
   }, [debouncedSearch]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         searchRef.current &&

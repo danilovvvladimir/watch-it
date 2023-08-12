@@ -1,10 +1,6 @@
 "use client";
 
-// ==> Libs imports <===
 import { InputHTMLAttributes, FC, useState } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./Input.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}

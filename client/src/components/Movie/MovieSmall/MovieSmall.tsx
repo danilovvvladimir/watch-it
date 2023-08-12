@@ -1,12 +1,8 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./MovieSmall.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { IMovieSmall } from "@/types/types";
+import { IMovieSmall } from "@/types/helpers.types";
 import { IMovie } from "@/types/movies.types";
 
 export interface MovieSmallProps extends IMovie {}

@@ -3,7 +3,7 @@
 import { FC } from "react";
 import "./MenuList.scss";
 import { usePathname, useRouter } from "next/navigation";
-import { IMenuListItem } from "@/types/types";
+import { IMenuListItem } from "@/types/helpers.types";
 import MenuListItem from "./MenuListItem/MenuListItem";
 
 interface MenuListProps {

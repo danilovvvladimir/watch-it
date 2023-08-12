@@ -1,10 +1,6 @@
 "use client";
 
-// ==> Libs imports <===
 import { ButtonHTMLAttributes, FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./Button.scss";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}

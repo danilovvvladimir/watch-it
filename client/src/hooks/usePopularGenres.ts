@@ -1,5 +1,5 @@
 import GenreService from "@/services/genre/genre.service";
-import { IGenre } from "@/types/movies.types";
+import { IGenre } from "@/types";
 import { useEffect, useState } from "react";
 
 const usePopularGenres = () => {
@@ -11,7 +11,7 @@ const usePopularGenres = () => {
       try {
         setIsLoading(true);
         const genreService = new GenreService();
-        const genres = await genreService.getPopularGenres();
+        const genres = await genreService.getPopular();
         setPopularGenres(genres);
       } catch (error) {
       } finally {

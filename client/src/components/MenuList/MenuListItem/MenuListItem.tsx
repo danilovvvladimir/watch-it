@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import "./MenuListItem.scss";
-import { IMenuListItem } from "@/types/types";
+import { IMenuListItem } from "@/types/helpers.types";
 
 interface MenuListItemProps extends IMenuListItem {
   isActive?: boolean;

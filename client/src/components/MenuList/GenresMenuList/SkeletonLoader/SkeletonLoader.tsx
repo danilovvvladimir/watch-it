@@ -1,8 +1,4 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./SkeletonLoader.scss";
 import "react-loading-skeleton/dist/skeleton.css";
 import Skeleton, { SkeletonProps } from "react-loading-skeleton";

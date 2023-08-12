@@ -1,11 +1,6 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import MovieMedium from "@/components/Movie/MovieMedium/MovieMedium";
-import { GenresCollectionItems } from "@/constants/constants";
-import { ICollection } from "@/types/movies.types";
+import { ICollection } from "@/types/helpers.types";
 
 const getGenresCollection = async () => {
   const response = await fetch("http://localhost:4444/api/genres/collections");

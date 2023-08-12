@@ -1,8 +1,4 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./PopularMovies.scss";
 import MovieSmall, { MovieSmallProps } from "../Movie/MovieSmall/MovieSmall";
 import Button from "../UI/Button/Button";

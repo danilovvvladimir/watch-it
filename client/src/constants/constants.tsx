@@ -10,7 +10,7 @@ import {
   IMovieMedium,
   IMovieSmall,
   ISlide,
-} from "@/types/types";
+} from "@/types/helpers.types";
 
 export const NavigationListItems: IMenuListItem[] = [
   {

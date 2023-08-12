@@ -1,5 +1,5 @@
 import { IGenre } from "@/types/movies.types";
-import { IMenuListItem } from "@/types/types";
+import { IMenuListItem } from "@/types/helpers.types";
 import { transformCodeToSvg } from "./transformCodeToSvg";
 import { defaultGenreIcon } from "@/constants/constants";
 

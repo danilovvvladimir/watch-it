@@ -1,5 +1,6 @@
-import { API_URL, getGenresUrl } from "@/configs/api.config";
-import { IGenre } from "@/types/movies.types";
+import { API_URL } from "@/configs/api.config";
+import { IGenre } from "@/types";
+import { ICollection } from "@/types/helpers.types";
 import defaultAxios, { AxiosInstance } from "axios";
 
 class GenreService {
@@ -7,11 +8,11 @@ class GenreService {
 
   constructor() {
     this.axiosInstance = defaultAxios.create({
-      baseURL: API_URL + "/genres/",
+      baseURL: API_URL + "/genres",
     });
   }
 
-  async getPopularGenres(limit: number = 4) {
+  async getPopular(limit: number = 4) {
     const response = await this.axiosInstance.get<IGenre[]>("", {
       params: {
         limit,
@@ -21,8 +22,18 @@ class GenreService {
     return response.data;
   }
 
-  async getGenreIdBySlug(slug: string) {
-    return this.axiosInstance.get<IGenre>(`by-slug/${slug}`);
+  async getBySlug(slug: string) {
+    const response = await this.axiosInstance.get<IGenre>(`/by-slug/${slug}`);
+
+    return response.data;
+  }
+
+  async getCollection() {
+    const response = await this.axiosInstance.get<ICollection[]>(
+      "/collections"
+    );
+
+    return response.data;
   }
 }
 

@@ -1,14 +1,9 @@
 "use client";
 
-// ==> Libs imports <===
 import { FC } from "react";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-// ==> Components imports <===
-
-// ==> Other imports <===
 import { store } from "@/store/store";
 
 interface MainProviderProps {

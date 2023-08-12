@@ -1,20 +1,15 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./SingleMoviePage.scss";
 import Image from "next/image";
 import capitalizeString from "@/utils/capitalizeString";
 import { notFound } from "next/navigation";
-import { MovieService } from "@/services/movie.service";
-import { IMovie } from "@/types/movies.types";
 import Link from "next/link";
 import Button from "@/components/UI/Button/Button";
 import CardList from "@/components/CardList/CardList";
-import { GenreService } from "@/services/genre/genre.service";
-import { ICard, ICards } from "@/types/types";
+import { ICard, ICards } from "@/types/helpers.types";
 import { transformMovieToCard } from "@/utils/transformToCard";
+import { IMovie } from "@/types";
+import MovieService from "@/services/movie/movie.service";
 
 interface SingleMoviePageProps {
   params: {
@@ -26,9 +21,10 @@ interface SingleMoviePageProps {
 export const generateMetadata = async ({
   params: { slug },
 }: SingleMoviePageProps) => {
+  const movieService = new MovieService();
   let movie: IMovie;
   try {
-    const { data } = await MovieService.getMoviesBySlug(slug);
+    const data = await movieService.getBySlug(slug);
     movie = data;
   } catch (error) {
     notFound();
@@ -42,15 +38,15 @@ const SingleMoviePage: FC<SingleMoviePageProps> = async ({
   params: { slug },
   isAuth,
 }) => {
+  const movieService = new MovieService();
+
   let movie: IMovie;
   let finalSimilarMoviesCards: ICards;
   try {
-    const { data } = await MovieService.getMoviesBySlug(slug);
+    const data = await movieService.getBySlug(slug);
     movie = data;
 
-    const { data: similarMovies } = await MovieService.getMoviesByGenre(
-      movie.genres[0]._id
-    );
+    const similarMovies = await movieService.getByGenre(movie.genres[0]._id);
 
     const similarMoviesCards = similarMovies
       .filter((similarMovie) => similarMovie._id !== movie._id)

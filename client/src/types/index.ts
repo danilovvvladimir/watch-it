@@ -1,9 +1,3 @@
-export interface IParameters {
-  year: number;
-  duration: number;
-  countries: string[];
-}
-
 export interface IActor {
   _id: string;
   photo: string;
@@ -18,6 +12,12 @@ export interface IGenre {
   slug: string;
   description: string;
   icon: string;
+}
+
+export interface IParameters {
+  year: number;
+  duration: number;
+  countries: string[];
 }
 
 export interface IMovie {
@@ -35,10 +35,10 @@ export interface IMovie {
   slug: string;
 }
 
-export interface ICollection {
+export interface IUser {
   _id: string;
-  imageNormal: string;
-  imageMedium: string;
-  slug: string;
-  name: string;
+  email: string;
+  password: string;
+  createdAt: string;
+  isAdmin: string;
 }

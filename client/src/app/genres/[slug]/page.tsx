@@ -1,16 +1,12 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./SingleGenrePage.scss";
 import { notFound, useSearchParams } from "next/navigation";
 import { cartoonsMovies, horrorMovies } from "@/constants/constants";
 import MovieMedium from "@/components/Movie/MovieMedium/MovieMedium";
-import { MovieService } from "@/services/movie.service";
-import { IGenre, IMovie } from "@/types/movies.types";
 import capitalizeString from "@/utils/capitalizeString";
 import GenreService from "@/services/genre/genre.service";
+import { IMovie } from "@/types";
+import MovieService from "@/services/movie/movie.service";
 
 interface SingleGenrePageProps {
   params: {
@@ -30,17 +26,18 @@ const SingleGenrePage: FC<SingleGenrePageProps> = async ({
   params: { slug },
 }) => {
   let genreMovies: IMovie[];
+  const movieService = new MovieService();
   const genreService = new GenreService();
 
   try {
-    const responseGenre = await genreService.getGenreIdBySlug(slug);
-    const genreId = responseGenre.data._id;
+    const genreData = await genreService.getBySlug(slug);
+    const genreId = genreData._id;
     if (!genreId) {
       notFound();
     }
 
-    const response = await MovieService.getMoviesByGenre(genreId);
-    genreMovies = response.data;
+    const movieData = await movieService.getByGenre(genreId);
+    genreMovies = movieData;
   } catch (error) {
     notFound();
   }

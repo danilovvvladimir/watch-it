@@ -1,9 +1,4 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
-import { IMovieMedium } from "@/types/types";
 import MovieMedium from "@/components/Movie/MovieMedium/MovieMedium";
 import { TrendingMoviesItems } from "@/constants/constants";
 

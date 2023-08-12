@@ -1,10 +1,6 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./CardList.scss";
-import { ICards } from "@/types/types";
+import { ICards } from "@/types/helpers.types";
 import Card from "../Card/Card";
 import Link from "next/link";
 

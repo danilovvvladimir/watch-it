@@ -7,7 +7,7 @@ import Image from "next/image";
 
 // ==> Other imports <===
 import "./MovieMedium.scss";
-import { IMovieMedium } from "@/types/types";
+import { IMovieMedium } from "@/types/helpers.types";
 
 interface MovieMediumProps extends IMovieMedium {
   isCollection?: boolean;

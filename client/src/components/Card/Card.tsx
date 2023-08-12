@@ -1,11 +1,7 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./Card.scss";
 import Image from "next/image";
-import { ICard } from "@/types/types";
+import { ICard } from "@/types/helpers.types";
 import Link from "next/link";
 
 interface CardProps extends ICard {}
