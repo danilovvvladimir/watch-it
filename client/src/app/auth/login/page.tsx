@@ -10,7 +10,7 @@ import Button from "@/components/UI/Button/Button";
 // ==> Other imports <===
 import "../Auth.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { IAuthInput } from "@/types/auth.types";
+import { IAuthLoginInput } from "@/types/auth.types";
 import { emailRegex } from "@/constants/regex";
 import { login } from "@/store/user/user.actions";
 import { AppDispatch } from "@/store/store";
@@ -30,9 +30,9 @@ const LoginPage: FC = () => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<IAuthInput>({ mode: "onChange" });
+  } = useForm<IAuthLoginInput>({ mode: "onChange" });
 
-  const onSubmit: SubmitHandler<IAuthInput> = async (data) => {
+  const onSubmit: SubmitHandler<IAuthLoginInput> = async (data) => {
     // console.log(data);
     try {
       const response = await dispatch(login(data));
@@ -74,6 +74,7 @@ const LoginPage: FC = () => {
                 },
               })}
               type="text"
+              autoComplete="off"
               className="auth__input"
               placeholder="Email..."
             />
@@ -96,15 +97,17 @@ const LoginPage: FC = () => {
                 },
               })}
               type={isPasswordVisible ? "text" : "password"}
+              autoComplete="off"
               className="auth__input"
               placeholder="Password..."
             />
-            {isPasswordVisible ? (
-              <button
-                type="button"
-                className="auth__input-icon-btn"
-                onClick={handlePasswordVisibility}
-              >
+
+            <button
+              type="button"
+              className="auth__input-icon-btn"
+              onClick={handlePasswordVisibility}
+            >
+              {isPasswordVisible ? (
                 <svg
                   width="24"
                   height="24"
@@ -118,13 +121,7 @@ const LoginPage: FC = () => {
                     fill="black"
                   />
                 </svg>
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="auth__input-icon-btn"
-                onClick={handlePasswordVisibility}
-              >
+              ) : (
                 <svg
                   width="24"
                   height="24"
@@ -141,8 +138,9 @@ const LoginPage: FC = () => {
                     fill="black"
                   />
                 </svg>
-              </button>
-            )}
+              )}
+            </button>
+
             {errors.password && (
               <div className="auth__label-error">{errors.password.message}</div>
             )}

@@ -11,7 +11,7 @@ import Button from "@/components/UI/Button/Button";
 
 // ==> Other imports <===
 import "../Auth.scss";
-import { IAuthInput } from "@/types/auth.types";
+import { IAuthRegisterInput } from "@/types/auth.types";
 import { emailRegex } from "@/constants/regex";
 import { AppDispatch, RootState } from "@/store/store";
 import { login, register as registerUser } from "@/store/user/user.actions";
@@ -20,7 +20,6 @@ import { AxiosError } from "axios";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
 const RegisterPage: FC = () => {
-  // useAuthRedirect();
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   // const {isLoading, user} = useSelector((state: RootState) => state.user);
@@ -34,10 +33,9 @@ const RegisterPage: FC = () => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<IAuthInput>({ mode: "onChange" });
+  } = useForm<IAuthRegisterInput>({ mode: "onChange" });
 
-  const onSubmit: SubmitHandler<IAuthInput> = async (data) => {
-    // console.log(data);
+  const onSubmit: SubmitHandler<IAuthRegisterInput> = async (data) => {
     try {
       const response = await dispatch(registerUser(data));
 
@@ -55,11 +53,35 @@ const RegisterPage: FC = () => {
       createNotify("Something went wrong...", notifyMode.ERROR);
     }
   };
+
   return (
     <section className="login-page auth">
       <div className="container">
         <h1 className="title auth__title">Registration</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="auth__wrapper">
+          <label className="auth__label">
+            <span className="auth__label-span">Username</span>
+            <input
+              {...register("username", {
+                required: {
+                  value: true,
+                  message: "Username is required!",
+                },
+                minLength: {
+                  value: 3,
+                  message: "Username's length must be at least 3 symbols",
+                },
+              })}
+              type="text"
+              autoComplete="off"
+              className="auth__input"
+              placeholder="Username..."
+            />
+            {errors.username && (
+              <div className="auth__label-error">{errors.username.message}</div>
+            )}
+          </label>
+
           <label className="auth__label">
             <span className="auth__label-span">Email</span>
             <input
@@ -74,6 +96,7 @@ const RegisterPage: FC = () => {
                 },
               })}
               type="text"
+              autoComplete="off"
               className="auth__input"
               placeholder="Email..."
             />
@@ -96,15 +119,16 @@ const RegisterPage: FC = () => {
                 },
               })}
               type={isPasswordVisible ? "text" : "password"}
+              autoComplete="off"
               className="auth__input"
               placeholder="Password..."
             />
-            {isPasswordVisible ? (
-              <button
-                type="button"
-                className="auth__input-icon-btn"
-                onClick={handlePasswordVisibility}
-              >
+            <button
+              type="button"
+              className="auth__input-icon-btn"
+              onClick={handlePasswordVisibility}
+            >
+              {isPasswordVisible ? (
                 <svg
                   width="24"
                   height="24"
@@ -118,13 +142,7 @@ const RegisterPage: FC = () => {
                     fill="black"
                   />
                 </svg>
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="auth__input-icon-btn"
-                onClick={handlePasswordVisibility}
-              >
+              ) : (
                 <svg
                   width="24"
                   height="24"
@@ -141,8 +159,9 @@ const RegisterPage: FC = () => {
                     fill="black"
                   />
                 </svg>
-              </button>
-            )}
+              )}
+            </button>
+
             {errors.password && (
               <div className="auth__label-error">{errors.password.message}</div>
             )}
@@ -152,7 +171,7 @@ const RegisterPage: FC = () => {
             <Button type="submit" className="auth__button">
               Register
             </Button>
-            <Link href="/auth/register" className="auth__link">
+            <Link href="/auth/login" className="auth__link">
               I already have an account
             </Link>
           </div>

@@ -1,7 +1,7 @@
 @import "../../assets/styles/variables.scss";
 
 .auth {
-  height: 100vh;
+  min-height: 100vh;
   background-color: $black-primary;
   padding-top: 80px;
   &__title {
@@ -21,7 +21,7 @@
   }
   &__label {
     color: #fff;
-    margin-bottom: 36px;
+    margin-bottom: 40px;
     border: 2px solid $gray-dark;
     border-radius: 10px;
     position: relative;
@@ -62,6 +62,9 @@
       font-family: Outfit;
       font-weight: 400;
       color: $gray-light;
+    }
+    &:focus {
+      background-color: transparent;
     }
   }
   &__input-icon-btn {
