@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import PopularMovies from "../../PopularMovies/PopularMovies";
 import "./RightSidebar.scss";

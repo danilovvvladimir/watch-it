@@ -36,6 +36,7 @@ export interface IAxiosResponseErrorData {
   message: string;
 }
 
-export interface IAuthResponse extends ITokens {
+export interface IAuthResponse {
   user: IUser;
+  tokens: ITokens;
 }

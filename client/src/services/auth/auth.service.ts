@@ -22,7 +22,7 @@ class AuthService {
       username,
     });
 
-    if (response.data.accessToken) {
+    if (response.data.tokens.accessToken) {
       saveToStorage(response.data);
     }
 
@@ -35,7 +35,9 @@ class AuthService {
       password,
     });
 
-    if (response.data.accessToken) {
+    console.log("LOGIN response: ", response);
+
+    if (response.data.tokens.accessToken) {
       saveToStorage(response.data);
     }
 
@@ -62,7 +64,7 @@ class AuthService {
       }
     );
 
-    if (response.data.accessToken) {
+    if (response.data.tokens.accessToken) {
       saveToStorage(response.data);
     }
 

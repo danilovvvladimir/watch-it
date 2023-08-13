@@ -19,13 +19,13 @@ import { AppDispatch, RootState } from "@/store/store";
 import { LoadingStatus } from "@/store/user/user.interface";
 import { IMenuListItem } from "@/types/helpers.types";
 import Button from "@/components/UI/Button/Button";
-import { logout } from "@/store/user/user.actions";
+import { checkAuth, logout } from "@/store/user/user.actions";
 import MenuListItem from "@/components/MenuList/MenuListItem/MenuListItem";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 const LeftSidebar: FC = () => {
   const isAuth = useSelector(checkIsAuth);
-  const { user } = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch<AppDispatch>();
 

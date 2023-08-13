@@ -1,3 +1,5 @@
+"use client";
+
 import "@/assets/styles/globals.scss";
 import Menu from "@/components/Menu/Menu";
 import { Inter } from "next/font/google";

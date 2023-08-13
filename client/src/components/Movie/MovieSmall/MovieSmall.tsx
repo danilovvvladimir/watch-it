@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import "./MovieSmall.scss";
 import Image from "next/image";
