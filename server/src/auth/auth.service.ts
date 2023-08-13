@@ -13,9 +13,10 @@ import { JwtService } from "@nestjs/jwt";
 import { AuthLoginDTO, AuthRegisterDTO } from "./dto/auth.dto";
 import {
   AUTH_ACCESS_DENIED_MESSAGE,
-  AUTH_USER_ALREADY_EXISTS_MESSAGE,
+  AUTH_USER_EMAIL_ALREADY_EXISTS_MESSAGE,
   AUTH_USER_INVALID_PASSWORD_MESSAGE,
   AUTH_USER_NOT_FOUND_MESSAGE,
+  AUTH_USER_USERNAME_ALREADY_EXISTS_MESSAGE,
 } from "../constants/auth";
 import { ConfigService } from "@nestjs/config";
 
@@ -30,10 +31,18 @@ export class AuthService {
   async register(dto: AuthRegisterDTO) {
     const { email, password, username } = dto;
 
-    const IsUserAlreadyExist = await this.userModel.findOne({ email: email });
+    const IsEmailAlreadyExist = await this.userModel.findOne({ email: email });
 
-    if (IsUserAlreadyExist) {
-      throw new BadRequestException(AUTH_USER_ALREADY_EXISTS_MESSAGE);
+    if (IsEmailAlreadyExist) {
+      throw new BadRequestException(AUTH_USER_EMAIL_ALREADY_EXISTS_MESSAGE);
+    }
+
+    const IsUsernameAlreadyExist = await this.userModel.findOne({
+      username: username,
+    });
+
+    if (IsUsernameAlreadyExist) {
+      throw new BadRequestException(AUTH_USER_USERNAME_ALREADY_EXISTS_MESSAGE);
     }
 
     const salt = await genSalt(10);
