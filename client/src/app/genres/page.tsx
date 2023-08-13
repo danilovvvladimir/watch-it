@@ -1,15 +1,11 @@
 import { FC } from "react";
 import MovieMedium from "@/components/Movie/MovieMedium/MovieMedium";
 import { ICollection } from "@/types/helpers.types";
-
-const getGenresCollection = async () => {
-  const response = await fetch("http://localhost:4444/api/genres/collections");
-
-  return response.json();
-};
+import GenreService from "@/services/genre/genre.service";
 
 const GenresPage: FC = async () => {
-  const genresCollection: ICollection[] = await getGenresCollection();
+  const genreService = new GenreService();
+  const genresCollection: ICollection[] = await genreService.getCollection();
 
   return (
     <section className="list-page genres-page">

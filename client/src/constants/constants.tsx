@@ -344,45 +344,6 @@ export const Slides: ISlide[] = [
   },
 ];
 
-export const FreshMoviesItems: IMovieMedium[] = [
-  {
-    title: "Fireheart",
-    image: fireheartMediumIMG,
-    url: "/",
-    id: "1",
-  },
-  {
-    title: "Fireheart",
-    image: fireheartMediumIMG,
-    url: "/",
-    id: "2",
-  },
-  {
-    title: "Fireheart",
-    image: fireheartMediumIMG,
-    url: "/",
-    id: "3",
-  },
-  {
-    title: "Fireheart",
-    image: fireheartMediumIMG,
-    url: "/",
-    id: "4",
-  },
-  {
-    title: "Fireheart",
-    image: fireheartMediumIMG,
-    url: "/",
-    id: "5",
-  },
-  {
-    title: "Fireheart",
-    image: fireheartMediumIMG,
-    url: "/",
-    id: "6",
-  },
-];
-
 export const TrendingMoviesItems: IMovieMedium[] = [
   {
     title: "Fireheart",

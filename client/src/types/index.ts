@@ -33,6 +33,8 @@ export interface IMovie {
   videoUrl: string;
   rating: number;
   slug: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IUser {

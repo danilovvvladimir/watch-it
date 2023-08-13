@@ -3,12 +3,12 @@ import "./MovieSmall.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { IMovieSmall } from "@/types/helpers.types";
-import { IMovie } from "@/types/movies.types";
+import { IMovie } from "@/types";
 
 export interface MovieSmallProps extends IMovie {}
 
 const MovieSmall: FC<MovieSmallProps> = ({
-  poster,
+  imageNormal,
   genres,
   rating,
   slug,
@@ -18,7 +18,7 @@ const MovieSmall: FC<MovieSmallProps> = ({
     <li className="popular-movies__movie movie-small">
       <Link href={`/movies/${slug}`} className="movie-small__wrapper-link">
         <Image
-          src={poster}
+          src={imageNormal}
           width={50}
           height={50}
           alt={title}
