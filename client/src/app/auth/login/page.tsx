@@ -1,13 +1,9 @@
 "use client";
 
-// ==> Libs imports <===
 import { FC, useState } from "react";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-// ==> Components imports <===
 import Button from "@/components/UI/Button/Button";
-
-// ==> Other imports <===
 import "../Auth.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { IAuthLoginInput } from "@/types/auth.types";
@@ -15,7 +11,6 @@ import { emailRegex } from "@/constants/regex";
 import { login } from "@/store/user/user.actions";
 import { AppDispatch } from "@/store/store";
 import { createNotify, notifyMode } from "@/utils/createNotify";
-import axios from "axios";
 
 const LoginPage: FC = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -33,24 +28,16 @@ const LoginPage: FC = () => {
   } = useForm<IAuthLoginInput>({ mode: "onChange" });
 
   const onSubmit: SubmitHandler<IAuthLoginInput> = async (data) => {
-    // console.log(data);
     try {
       const response = await dispatch(login(data));
 
-      if (login.rejected.match(response)) {
-        if (axios.isAxiosError(response.payload)) {
-          createNotify(
-            response.payload.response?.data?.message,
-            notifyMode.ERROR
-          );
-        }
+      if (response.meta.requestStatus === "rejected") {
+        createNotify(response.payload as string, notifyMode.ERROR);
       } else {
-        reset();
         createNotify("You are successfully authorized!");
+        reset();
       }
     } catch (error) {
-      console.log(error);
-
       createNotify("Something went wrong...", notifyMode.ERROR);
     }
   };

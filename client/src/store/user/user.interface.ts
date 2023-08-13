@@ -19,7 +19,7 @@ export enum LoadingStatus {
   FAILURE = "failure",
 }
 
-export interface IEmailPassword {
+export interface ILoginRequest {
   email: string;
   password: string;
 }

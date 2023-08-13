@@ -1,10 +1,7 @@
-// ==> Libs imports <===
-import { IUser } from "@/types/user.types";
 import { FC } from "react";
 import axios from "@/utils/axios";
-// ==> Components imports <===
+import { IUser } from "@/types";
 
-// ==> Other imports <===
 // import "./UserProfilePage.scss";
 
 const getUserInfo = async () => {

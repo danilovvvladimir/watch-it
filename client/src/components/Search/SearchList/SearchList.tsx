@@ -1,13 +1,9 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./SearchList.scss";
-import { IMovie } from "@/types/movies.types";
 import Link from "next/link";
 import MovieSmall from "@/components/Movie/MovieSmall/MovieSmall";
 import Image from "next/image";
+import { IMovie } from "@/types";
 
 interface SearchListProps {
   movies: IMovie[];
@@ -24,7 +20,7 @@ const SearchList: FC<SearchListProps> = ({ movies }) => {
             className="search-list__item"
           >
             <Image
-              src={movie.poster}
+              src={movie.imageNormal}
               alt={movie.title}
               height={50}
               width={50}

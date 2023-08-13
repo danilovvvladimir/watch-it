@@ -14,24 +14,6 @@ import MovieService from "@/services/movie/movie.service";
 import GenreService from "@/services/genre/genre.service";
 import ActorService from "@/services/actor/actors.service";
 
-// const getMovies = async () => {
-//   const response = await fetch("http://localhost:4444/api/movies");
-
-//   return response.json();
-// };
-
-// const getActors = async () => {
-//   const response = await fetch("http://localhost:4444/api/actors");
-
-//   return response.json();
-// };
-
-// const getGenresCollection = async () => {
-//   const response = await fetch("http://localhost:4444/api/genres/collections");
-
-//   return response.json();
-// };
-
 const HomePage: FC = async () => {
   const movieService = new MovieService();
   const actorService = new ActorService();

@@ -1,8 +1,4 @@
-// ==> Libs imports <===
 import { FC } from "react";
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./AboutUsPage.scss";
 import Image from "next/image";
 import decorations from "@/assets/images/decorations/about-us-decorations.svg";

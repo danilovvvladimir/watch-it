@@ -1,13 +1,8 @@
 "use client";
 
-// ==> Libs imports <===
 import { FC } from "react";
 import Image from "next/image";
-
-// ==> Components imports <===
 import Button from "@/components/UI/Button/Button";
-
-// ==> Other imports <===
 import "./NotFoundPage.scss";
 import notfoundIMG from "@/assets/images/404error.svg";
 

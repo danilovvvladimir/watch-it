@@ -1,11 +1,6 @@
-// ==> Libs imports <===
 import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-// ==> Components imports <===
-
-// ==> Other imports <===
 import "./MovieMedium.scss";
 import { IMovieMedium } from "@/types/helpers.types";
 

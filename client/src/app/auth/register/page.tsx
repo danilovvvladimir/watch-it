@@ -1,15 +1,10 @@
 "use client";
 
-// ==> Libs imports <===
 import { FC, useState } from "react";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-
-// ==> Components imports <===
 import Button from "@/components/UI/Button/Button";
-
-// ==> Other imports <===
 import "../Auth.scss";
 import { IAuthRegisterInput } from "@/types/auth.types";
 import { emailRegex } from "@/constants/regex";
