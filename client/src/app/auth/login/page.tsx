@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "@/components/UI/Button/Button";
 import "../Auth.scss";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -11,6 +11,8 @@ import { emailRegex } from "@/constants/regex";
 import { login } from "@/store/user/user.actions";
 import { AppDispatch } from "@/store/store";
 import { createNotify, notifyMode } from "@/utils/createNotify";
+import { checkIsAuth } from "@/store/user/user.slice";
+import { redirect } from "next/navigation";
 
 const LoginPage: FC = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -19,6 +21,8 @@ const LoginPage: FC = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
   const dispatch = useDispatch<AppDispatch>();
+
+  const isAuth = useSelector(checkIsAuth);
 
   const {
     register,
@@ -41,6 +45,10 @@ const LoginPage: FC = () => {
       createNotify("Something went wrong...", notifyMode.ERROR);
     }
   };
+
+  if (isAuth) {
+    redirect("/");
+  }
 
   return (
     <section className="login-page auth">

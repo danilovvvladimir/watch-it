@@ -11,13 +11,14 @@ import { emailRegex } from "@/constants/regex";
 import { AppDispatch, RootState } from "@/store/store";
 import { login, register as registerUser } from "@/store/user/user.actions";
 import { createNotify, notifyMode } from "@/utils/createNotify";
-import { AxiosError } from "axios";
-import { useAuthRedirect } from "@/hooks/useAuthRedirect";
+import { checkIsAuth } from "@/store/user/user.slice";
+import { redirect } from "next/navigation";
 
 const RegisterPage: FC = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
-  // const {isLoading, user} = useSelector((state: RootState) => state.user);
+  const { isLoading, user } = useSelector((state: RootState) => state.user);
+  const isAuth = useSelector(checkIsAuth);
 
   const handlePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -44,6 +45,10 @@ const RegisterPage: FC = () => {
       createNotify("Something went wrong...", notifyMode.ERROR);
     }
   };
+
+  if (isAuth) {
+    redirect("/");
+  }
 
   return (
     <section className="login-page auth">
