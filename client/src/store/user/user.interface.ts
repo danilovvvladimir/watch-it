@@ -1,4 +1,4 @@
-import { IUser } from "@/types/user.types";
+import { IUser } from "@/types";
 
 export interface IUserState {
   email: string;
@@ -24,8 +24,18 @@ export interface IEmailPassword {
   password: string;
 }
 
+export interface IRegisterRequest {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export interface IAxiosResponseErrorData {
+  statusCode: number;
+  error: string;
+  message: string;
+}
+
 export interface IAuthResponse extends ITokens {
-  user: IUser & {
-    isAdmin: boolean;
-  };
+  user: IUser;
 }

@@ -40,15 +40,11 @@ const RegisterPage: FC = () => {
       const response = await dispatch(registerUser(data));
 
       if (response.meta.requestStatus === "rejected") {
-        createNotify(
-          "User with this email is already existing!",
-          notifyMode.ERROR
-        );
+        createNotify(response.payload as string, notifyMode.ERROR);
       } else {
         createNotify("You are successfully registered!");
+        reset();
       }
-
-      reset();
     } catch (error) {
       createNotify("Something went wrong...", notifyMode.ERROR);
     }
