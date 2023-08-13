@@ -12,7 +12,7 @@ class GenreService {
     });
   }
 
-  async getPopular() {
+  async getAll() {
     const response = await this.axiosInstance.get<IGenre[]>("/");
 
     return response.data;

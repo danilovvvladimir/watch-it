@@ -6,11 +6,11 @@ import { API_URL } from "@/configs/api.config";
 import { IMovie } from "@/types";
 import MovieService from "@/services/movie/movie.service";
 
-const getMovies = async () => {
-  const response = await fetch(API_URL + "/movies");
+// const getMovies = async () => {
+//   const response = await fetch(API_URL + "/movies");
 
-  return response.json();
-};
+//   return response.json();
+// };
 
 const PopularMovies: FC = async () => {
   const movieService = new MovieService();

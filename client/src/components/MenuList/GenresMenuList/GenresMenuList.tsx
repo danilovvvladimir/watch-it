@@ -4,11 +4,9 @@ import React, { FC, useState, useEffect } from "react";
 import "../MenuList.scss";
 import MenuList from "../MenuList";
 import { transformGenreToMenuItem } from "@/utils/transformToMenuItem";
-import GenreService from "@/services/genre/genre.service";
-import usePopularGenres from "@/hooks/usePopularGenres";
-import { NavigationListItems } from "@/constants/constants";
 import { IGenre } from "@/types";
 import { API_URL } from "@/configs/api.config";
+import GenreService from "@/services/genre/genre.service";
 
 const getPopular = async () => {
   const response = await fetch(`${API_URL}/genres`);
@@ -18,9 +16,9 @@ const getPopular = async () => {
 
 const GenresMenuList: FC = async () => {
   console.log("GENRES RENDER");
-  // const genreService = new GenreService();
-  // const popularGenres = await genreService.getPopular();
-  const popularGenres: IGenre[] = await getPopular();
+  const genreService = new GenreService();
+  const popularGenres = (await genreService.getAll()).slice(0, 4);
+  // const popularGenres: IGenre[] = await getPopular();
 
   return (
     <MenuList
