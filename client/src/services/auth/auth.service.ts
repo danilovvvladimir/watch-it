@@ -10,17 +10,21 @@ class AuthService {
   axiosInstance: AxiosInstance;
 
   constructor() {
-    this.axiosInstance = defaultAxios.create({
-      baseURL: API_URL + "/auth",
-    });
+    // this.axiosInstance = defaultAxios.create({
+    //   baseURL: API_URL + "/auth",
+    // });
+    this.axiosInstance = axios;
   }
 
   async register(username: string, email: string, password: string) {
-    const response = await this.axiosInstance.post<IAuthResponse>("/register", {
-      email,
-      password,
-      username,
-    });
+    const response = await this.axiosInstance.post<IAuthResponse>(
+      "auth/register",
+      {
+        email,
+        password,
+        username,
+      }
+    );
 
     if (response.data.tokens.accessToken) {
       saveToStorage(response.data);
@@ -30,10 +34,13 @@ class AuthService {
   }
 
   async login(email: string, password: string) {
-    const response = await this.axiosInstance.post<IAuthResponse>("/login", {
-      email,
-      password,
-    });
+    const response = await this.axiosInstance.post<IAuthResponse>(
+      "auth/login",
+      {
+        email,
+        password,
+      }
+    );
 
     console.log("LOGIN response: ", response);
 
@@ -52,19 +59,17 @@ class AuthService {
   async getNewTokens() {
     const refreshToken = Cookies.get("refreshToken");
 
-    const response = await this.axiosInstance.post<IAuthResponse>(
-      "/access-token",
+    const response = await defaultAxios.get<IAuthResponse>(
+      `${API_URL}/auth/refresh`,
       {
-        refreshToken,
-      },
-      {
+        withCredentials: true,
         headers: {
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${refreshToken}`,
         },
       }
     );
 
-    if (response.data.tokens.accessToken) {
+    if (response.data.tokens.accessToken && response.data.tokens.refreshToken) {
       saveToStorage(response.data);
     }
 

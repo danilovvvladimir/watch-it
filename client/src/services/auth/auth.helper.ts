@@ -2,12 +2,13 @@ import { IAuthResponse, ITokens } from "@/store/user/user.interface";
 import Cookies from "js-cookie";
 
 export const saveTokensStorage = (data: ITokens) => {
-  Cookies.set("accessToken", data.accessToken);
+  // Cookies.set("accessToken", data.accessToken);
+  localStorage.setItem("accessToken", data.accessToken);
   Cookies.set("refreshToken", data.refreshToken);
 };
 
 export const removeTokensStorage = () => {
-  Cookies.remove("accessToken");
+  localStorage.remove("accessToken");
   Cookies.remove("refreshToken");
 };
 

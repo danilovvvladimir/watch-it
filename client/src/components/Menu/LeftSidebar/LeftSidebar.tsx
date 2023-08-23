@@ -25,6 +25,7 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 
 const LeftSidebar: FC = () => {
+  const [generalItems, setGeneralItems] = useState<IMenuListItem[]>([]);
   const isAuth = useSelector(checkIsAuth);
 
   const dispatch = useDispatch<AppDispatch>();
@@ -33,13 +34,33 @@ const LeftSidebar: FC = () => {
     dispatch(logout());
   };
 
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      console.log("menu локал найден");
+
+      dispatch(checkAuth());
+    }
+
+    if (isAuth) {
+      setGeneralItems(GeneralAuthListItems);
+    } else {
+      setGeneralItems(GeneralListItems);
+    }
+  }, []);
+
+  // const navigationsItems = isAuth
+  //   ? navigationsItemsAuth
+  //   : navigationsItemsNotAuth;
+
+  // const isAuth = false;
+
   return (
     <aside className="container-mini sidebar sidebar--left">
       <Logo className="sidebar__logo" />
       <nav className="menu">
         <MenuList items={NavigationListItems} title="Menu" />
         <GenresMenuList />
-        {isAuth ? (
+        {/* {isAuth ? (
           <div className="sidebar__auth-menu">
             <MenuList items={GeneralAuthListItems} title="General" />
             <button className="sidebar__logout" onClick={handleLogout}>
@@ -65,7 +86,10 @@ const LeftSidebar: FC = () => {
           </div>
         ) : (
           <MenuList items={GeneralListItems} title="General" />
-        )}
+        )} */}
+        <MenuList items={generalItems} title="General" />
+        {/* {isAuth ? <div>sss</div> : <div>aaa</div>} */}
+        {/* {isAuth && <div>aaa</div>} */}
       </nav>
     </aside>
   );

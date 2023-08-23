@@ -11,7 +11,7 @@ import { checkIsAuth } from "@/store/user/user.slice";
 import Cookies from "js-cookie";
 
 const Menu: FC = () => {
-  // const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
   // useEffect(() => {
   //   console.log("ACCT", Cookies.get("accessToken"));
